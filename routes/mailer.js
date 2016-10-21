@@ -1,16 +1,9 @@
 var express = require('express');
+var nodemailer = require('nodemailer');
 var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    res.render('users', {
-        title: 'Users'
-    });
-});
-
-function mailing() {
-    var nodemailer = require('nodemailer');
-
     // create reusable transporter object using the default SMTP transport
     var transporter = nodemailer.createTransport('smtps://thiagomallon@gmail.com:pass@smtp.gmail.com');
 
@@ -23,13 +16,17 @@ function mailing() {
         html: '<b>Hello world</b>' // html body
     };
 
+    var infoResponse;
     // send mail with defined transport object
     transporter.sendMail(mailOptions, function(error, info) {
         if (error) {
             return console.log(error);
         }
+        infoResponse = info.response;
         console.log('Message sent: ' + info.response);
     });
-}
+
+    res.render('mailer/mailer', {response: infoResponse});
+});
 
 module.exports = router;
