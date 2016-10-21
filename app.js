@@ -14,10 +14,10 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
     .set('view engine', 'jade')
-    // .set('view options', {
-    //     layout: true
-    // })
-;
+    .set('view options', {
+        // layout: true
+        layout: false
+    });
 
 // configs
 app
