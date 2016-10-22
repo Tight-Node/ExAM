@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  h1= title
+  each gun in guns
+    div
+      h4 #{gun.model} from #{gun.brand}
+      ul
+        li Brand: #[span(class="list-values") #{gun.brand}]
+        li Model: #[span(class="list-values") #{gun.model}]
+        li Caliber: #[span(class="list-values") #{gun.caliber}]
+        li Ammo:
+          ul
+            each ammo in gun.ammos
+              li
+                span(class="list-values") #{ammo}
