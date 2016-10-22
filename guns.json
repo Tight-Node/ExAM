@@ -1,7 +1,7 @@
-{"brand":"Colt","model":"1911","caliber":"9mm","ammos":["Special","Ogival","Penetrator"]}
-{"brand":"Glock","model":"G19","caliber":"9mm","ammos":["Special","Ogival","Penetrator"]}
-{"brand":"Glock","model":"G17","caliber":"9mm","ammos":["Special","Ogival","Penetrator"]}
-{"brand":"Glock","model":"G25","caliber":".380","ammos":["Special","Ogival","Penetrator"]}
-{"brand":"Beretta","model":"M9","caliber":"9mm","ammos":["Special","Ogival","Penetrator"]}
-{"brand":"Taurus","model":"1911","caliber":".45 ACP","ammos":["Special","Ogival","Penetrator"]}
-{"brand":"CBC","model":"7022","caliber":".22","ammos":["Special","Ogival","Penetrator"]}
+{"brand":"Colt","serie":"1911","caliber":"9mm","ammos":["Special","Ogival","Penetrator"]}
+{"brand":"Glock","serie":"G19","caliber":"9mm","ammos":["Special","Ogival","Penetrator"]}
+{"brand":"Glock","serie":"G17","caliber":"9mm","ammos":["Special","Ogival","Penetrator"]}
+{"brand":"Glock","serie":"G25","caliber":".380","ammos":["Special","Ogival","Penetrator"]}
+{"brand":"Beretta","serie":"M9","caliber":"9mm","ammos":["Special","Ogival","Penetrator"]}
+{"brand":"Taurus","serie":"1911","caliber":".45 ACP","ammos":["Special","Ogival","Penetrator"]}
+{"brand":"CBC","serie":"7022","caliber":".22","ammos":["Special","Ogival","Penetrator"]}

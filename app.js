@@ -4,15 +4,23 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-// var mongoose = require('mongoose').connect('mongodb://localhost:27017/users');
-var mongoose = require('mongoose').connect('mongodb://localhost/users');
+var mongoose = require('mongoose');
+// Here we find an appropriate database to connect to, defaulting to
+// localhost if we don't find one.
+var uristring =
+  process.env.MONGOLAB_URI ||
+  process.env.MONGOHQ_URL ||
+  'mongodb://localhost/users';
+mongoose.connect(uristring, function(err, res) {
+  (err) ? console.log('MongoDB connection error: ' + uristring + ' - ' + err):
+    console.log('MongoDB connection succeed: ' + uristring);
+});
+
 // var appleBee = 'Nursering for gelosy';
 var routes = require('./routes/router'),
   mailer = require('./routes/mailer'),
-  guns = require('./routes/guns')
-  ,
-  users = require('./routes/users')
-  ;
+  guns = require('./routes/guns'),
+  users = require('./routes/users');
 
 var app = express();
 
