@@ -1,7 +1,15 @@
-{"brand":"Colt","serie":"1911","caliber":"9mm","ammos":["Special","Ogival","Penetrator"]}
-{"brand":"Glock","serie":"G19","caliber":"9mm","ammos":["Special","Ogival","Penetrator"]}
-{"brand":"Glock","serie":"G17","caliber":"9mm","ammos":["Special","Ogival","Penetrator"]}
-{"brand":"Glock","serie":"G25","caliber":".380","ammos":["Special","Ogival","Penetrator"]}
-{"brand":"Beretta","serie":"M9","caliber":"9mm","ammos":["Special","Ogival","Penetrator"]}
-{"brand":"Taurus","serie":"1911","caliber":".45 ACP","ammos":["Special","Ogival","Penetrator"]}
-{"brand":"CBC","serie":"7022","caliber":".22","ammos":["Special","Ogival","Penetrator"]}
+{"brand":"Colt","category":"pistol","serie":"1911","caliber":"9mm","ammos":["Special","Ogival","Penetrator"]}
+{"brand":"Glock","category":"pistol","serie":"G19","caliber":"9mm","ammos":["Special","Ogival","Penetrator"]}
+{"brand":"Beretta","category":"pistol","serie":"M9","caliber":"9mm","ammos":["Special","Ogival","Penetrator"]}
+{"brand":"Taurus","category":"pistol","serie":"1911","caliber":".45 ACP","ammos":["Special","Ogival","Penetrator"]}
+{"brand":"CBC","category":"pistol","serie":"7022","caliber":".22","ammos":["Special","Ogival","Penetrator"]}
+{"brand":"Colt","category":"smg","serie":"automatic","caliber":"9mm","ammos":["Special","Ogival","Penetrator"]}
+{"brand":"Glock","category":"smg","serie":"automatic","caliber":"9mm","ammos":["Special","Ogival","Penetrator"]}
+{"brand":"Beretta","category":"smg","serie":"automatic","caliber":"9mm","ammos":["Special","Ogival","Penetrator"]}
+{"brand":"Taurus","category":"smg","serie":"automatic","caliber":".45 ACP","ammos":["Special","Ogival","Penetrator"]}
+{"brand":"CBC","category":"smg","serie":"automatic","caliber":".22","ammos":["Special","Ogival","Penetrator"]}
+{"brand":"Colt","category":"shotgun","serie":"bolt-action","caliber":"9mm","ammos":["Special","Ogival","Penetrator"]}
+{"brand":"Glock","category":"shotgun","serie":"bolt-action","caliber":"9mm","ammos":["Special","Ogival","Penetrator"]}
+{"brand":"Beretta","category":"shotgun","serie":"bolt-action","caliber":"9mm","ammos":["Special","Ogival","Penetrator"]}
+{"brand":"Taurus","category":"shotgun","serie":"bolt-action","caliber":".45 ACP","ammos":["Special","Ogival","Penetrator"]}
+{"brand":"CBC","category":"shotgun","serie":"bolt-action","caliber":".22","ammos":["Special","Ogival","Penetrator"]}

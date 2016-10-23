@@ -4,22 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-// Here we find an appropriate database to connect to, defaulting to
-// localhost if we don't find one.
-var uristring =
-  process.env.MONGOLAB_URI ||
-  process.env.MONGOHQ_URL ||
-  'mongodb://localhost/users';
-mongoose.connect(uristring, function(err, res) {
-  (err) ? console.log('MongoDB connection error: ' + uristring + ' - ' + err):
-    console.log('MongoDB connection succeed: ' + uristring);
-});
 
-// var appleBee = 'Nursering for gelosy';
 var routes = require('./routes/router'),
-  mailer = require('./routes/mailer'),
-  guns = require('./routes/guns'),
+  armory = require('./routes/armory'),
   users = require('./routes/users');
 
 var app = express();
@@ -28,7 +15,6 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'))
   .set('view engine', 'jade')
   .set('view options', {
-    // layout: true
     layout: false
   });
 
@@ -55,9 +41,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/armory', armory);
+// app.use('/users', users);
 app.use('/users', users);
-app.use('/mailer', mailer);
-app.use('/guns', guns);
 // app.get('*', function(req, res) {
 //     res.render('layout');
 // });

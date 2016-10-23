@@ -1,16 +1,16 @@
 extends ../layout
 
 block content
-    h1= title
-    each user in users
-        div
-            h4 #{user.name.first}
-            ul
-                li Email: #[span(class="list-values") #{user.email}]
-                li Surname: #[span(class="list-values") #{user.name.last}]
-                li age: #[span(class="list-values") #{user.age}]
-                li Skils:
-                    ul
-                        each skil in user.skils
-                            li
-                                span(class="list-values") #{skil}
+  h1= title
+  each user in users
+    div
+      h4 #{user.name.first}
+      ul
+        li Email: #[span(class="list-values") #{user.email}]
+        li Surname: #[span(class="list-values") #{user.name.last}]
+        li age: #[span(class="list-values") #{user.age}]
+        li Skils:
+          ul
+            each skil in user.skils
+              li
+                span(class="list-values") #{skil}
