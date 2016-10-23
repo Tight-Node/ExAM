@@ -5,7 +5,7 @@
 $fonts: monospace, lucida, verdana;
 * {}
 body {
-  // background: gainsboro;
+  background: #cfcfcf;
   color: #999;
   font-family: $fonts;
 }
@@ -27,11 +27,10 @@ ul.centralized {
   border-radius: 1rem;
 }
 .gun-item {
-  background: gainsboro;
+  background: #cfcfcf;
   border: 0.1rem solid black;
   border-radius: 1rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin: 1rem;
   padding-left: 1rem;
   padding-bottom: 1rem;
   padding-right: 1rem;
