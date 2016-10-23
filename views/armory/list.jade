@@ -3,16 +3,17 @@ extends ../layout
 block content
   h1= title
   each gun in guns
-    div(class="centralized")
-      h4 #{gun.brand}
-      ul
-        li Id: #[span(class="list-values") #{gun._id}]
-        li Brand: #[span(class="list-values") #{gun.brand}]
-        li Category: #[span(class="list-values") #{gun.category}]
-        li Serie: #[span(class="list-values") #{gun.serie}]
-        li Caliber: #[span(class="list-values") #{gun.caliber}]
-        li Ammos:
-          ul
-            each ammo in gun.ammos
-              li
-                span(class="list-values") #{ammo}
+    div(class="centralized row")
+      div(class="col-md-2 col-md-offset-5 gun-item")
+        h4 #{gun.brand}
+        ul(class="centralized list-unstyled")
+          li Id: #[span(class="list-values") #{gun._id}]
+          li Brand: #[span(class="list-values") #{gun.brand}]
+          li Category: #[span(class="list-values") #{gun.category}]
+          li Serie: #[span(class="list-values") #{gun.serie}]
+          li Caliber: #[span(class="list-values") #{gun.caliber}]
+          li Ammos:
+            ul
+              each ammo in gun.ammos
+                li
+                  span(class="list-values") #{ammo}
