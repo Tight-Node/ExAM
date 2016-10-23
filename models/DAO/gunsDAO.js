@@ -5,17 +5,7 @@ function GunDAO() {
 }
 
 GunDAO.prototype.readAll = function(cb) {
-  return Gun.find()
-  // .where('category').equals('pistol')xc
-  // .select({
-  //   "_id": Number,
-  //   "brand": String,
-  //   "category": String,
-  //   "serie": String,
-  //   "caliber": String,
-  //   "ammos": [String]
-  // })
-  .exec(cb);
+  return Gun.find().exec(cb);
 };
 
 GunDAO.prototype.readOne = function(cb) {

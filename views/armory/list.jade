@@ -3,7 +3,7 @@ extends ../layout
 block content
   h1= title
   each gun in guns
-    div
+    div(class="centralized")
       h4 #{gun.brand}
       ul
         li Id: #[span(class="list-values") #{gun._id}]

@@ -1,0 +1,13 @@
+/*
+ * @author: Thiago Mallon <thiagomallon@gmail.com>
+ * @created: 10/23/2016
+ */
+$fonts: monospace, lucida, verdana;
+* {
+  background: #222;
+  // color: #999;
+}
+body {
+  color: #999;
+  font-family: $fonts;
+}

@@ -9,14 +9,14 @@
 
     // --- Basic Tasks ---
     gulp.task('css', function() {
-        return gulp.src('./public/stylesheets/*.scss')
+        return gulp.src('./public/stylesheets/sass/*.scss')
             .pipe(
                 sass({
                     includePaths: ['./public/stylesheets/'],
                     errLogToConsole: true,
                     outputStyle: 'compressed'
                 }))
-            .pipe(concat('app.scss'))
+            .pipe(concat('style.css'))
             .pipe(gulp.dest('./public/stylesheets/'));
     });
 
@@ -30,7 +30,7 @@
     });
 
     gulp.task('watch', function() {
-        gulp.watch('./public/stylesheets/*.scss', ['css']);
+        gulp.watch('./public/stylesheets/sass/*.scss', ['css']);
         // gulp.watch('./src/*.js', ['js']);
     });
 

@@ -44,8 +44,8 @@ app.use('/', routes);
 app.use('/armory', armory);
 // app.use('/users', users);
 app.use('/users', users);
-// app.get('*', function(req, res) {
-//     res.render('layout');
-// });
+app.get('*', function(req, res) {
+    res.render('layout');
+});
 
 module.exports = app;

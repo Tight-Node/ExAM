@@ -1,4 +1,6 @@
 var mongoose = require('mongoose'),
+  DBConn = require('../libs/DBConnector'),
+  connection = new DBConn().getConnection('users'),
   Schema = mongoose.Schema;
 
 var personSchema = new Schema({
