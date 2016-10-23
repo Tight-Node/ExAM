@@ -3,11 +3,50 @@
  * @created: 10/23/2016
  */
 $fonts: monospace, lucida, verdana;
-* {
-  background: #222;
-  // color: #999;
-}
+* {}
 body {
+  background: #cfcfcf;
   color: #999;
   font-family: $fonts;
 }
+h1 {
+  color: #444;
+  text-align: center;
+}
+div.centralized {
+  background-color: #222;
+  // background-image: url("../images/bg-texture.png");
+  background-image: url("../images/bg-texture.jpg");
+  background-repeat: repeat;
+  padding: 1rem;
+  // background: gainsboro;
+  // position: absolute;
+  // margin-top: -3rem;
+}
+ul.centralized {
+  padding: 1rem;
+  background-color: #1c1b1b;
+  border: 0.1rem inset black;
+  border-style: dotted;
+  border-radius: 1rem;
+}
+.gun-item {
+  background: #cfcfcf;
+  border: 0.1rem ridge black;
+  border-style: outset;
+  border-radius: 1rem;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+  padding-right: 1rem;
+  -webkit-box-shadow: 0.5rem 0.5rem 0.25rem 0 rgba(0,0,0,0.75);
+  -moz-box-shadow: 0.5rem 0.5rem 0.25rem 0 rgba(0,0,0,0.75);
+  box-shadow: 0.5rem 0.5rem 0.25rem 0 rgba(0,0,0,0.75);
+  h4 {
+    color: #444;
+    font-weight: bolder;
+  }
+}
+// @media (max-width: @screen-xs-max) {}
+// @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {}
+// @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {}
+// @media (min-width: @screen-lg-min) {}
