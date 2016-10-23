@@ -1,11 +1,11 @@
 extends ../layout
 
 block content
-  h1= title
+  h1(class="icon-pistol-icon") #{title}
   each gun in guns
     div(class="centralized row")
       div(class="col-md-2 col-md-offset-5 gun-item")
-        h4 #{gun.brand}
+        h4(class="icon-#{gun.brand.toLowerCase()}-logo")
         ul(class="centralized list-unstyled")
           li Id: #[span(class="list-values") #{gun._id}]
           li Brand: #[span(class="list-values") #{gun.brand}]

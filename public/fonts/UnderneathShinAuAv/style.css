@@ -1,0 +1,54 @@
+@font-face {
+  font-family: 'UnderneathShinAuAv';
+  src:  url('fonts/UnderneathShinAuAv.eot?20kyiz');
+  src:  url('fonts/UnderneathShinAuAv.eot?20kyiz#iefix') format('embedded-opentype'),
+    url('fonts/UnderneathShinAuAv.ttf?20kyiz') format('truetype'),
+    url('fonts/UnderneathShinAuAv.woff?20kyiz') format('woff'),
+    url('fonts/UnderneathShinAuAv.svg?20kyiz#UnderneathShinAuAv') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'UnderneathShinAuAv' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-beretta-logo:before {
+  content: "\e900";
+}
+.icon-cbc-logo:before {
+  content: "\e901";
+}
+.icon-colt-logo:before {
+  content: "\e902";
+}
+.icon-glock-logo:before {
+  content: "\e903";
+}
+.icon-gun-pistol .path1:before {
+  content: "\e904";
+  color: rgb(176, 190, 197);
+}
+.icon-gun-pistol .path2:before {
+  content: "\e905";
+  margin-left: -1em;
+  color: rgb(84, 110, 122);
+}
+.icon-pistol-icon:before {
+  content: "\e906";
+}
+.icon-taurus-logo:before {
+  content: "\e907";
+}
+
