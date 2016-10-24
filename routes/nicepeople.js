@@ -10,15 +10,13 @@ var NicepeopleDAO = require('../models/DAO/nicepeopleDAO'),
 
 /* GET people listing. */
 router.get('/', function(req, res) {
-  nicepeopleDAO.read({}, function(err, niceones) {
-    console.log('Erro requisição nicepeople: ');
-    console.log(err);
+  // nicepeopleDAO.read({}, function(err, niceones) {
     res.render('nicepeople/list', {
-      nicepeople: niceones,
-      // nicepeople: {},
-      title: 'Nice people'
+      // nicepeople: niceones,
+      nicepeople: {},
+      title: "Go to this route (nicepeople are sleeping now..) http://localhost:4000/armory"
     });
-  })
+  // })
 });
 
 module.exports = router;
