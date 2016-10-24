@@ -6,8 +6,11 @@ block content
     div(class="centralized row")
       div(class="col-md-2 col-md-offset-5 gun-item")
         h4(class="icon-#{gun.brand.toLowerCase()}-logo")
+          a(class="btn btn-primary glyphicon glyphicon-zoom-in")
+          a(class="btn btn-warning glyphicon glyphicon-cog")
         ul(class="centralized list-unstyled")
-          li Id: #[span(class="list-values") #{gun._id}]
+          li #[span(class="list-values") #{gun._id}]
+            hr
           li Brand: #[span(class="list-values") #{gun.brand}]
           li Category: #[span(class="list-values") #{gun.category}]
           li Serie: #[span(class="list-values") #{gun.serie}]
