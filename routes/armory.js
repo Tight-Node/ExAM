@@ -1,49 +1,48 @@
 var express = require('express'),
-  mongoose = require('mongoose'),
-  router = express.Router({
-    caseSensitive: false,
-    strict: true
-  });
+    router = express.Router({
+        caseSensitive: false,
+        strict: true
+    });
 
-var GunDAO = require('../models/DAO/gunsDAO'),
-  gunDAO = new GunDAO();
+var dbConn = require('../libs/DBConnector');
+var conn = new dbConn(); 
+conn.getConnection('alongDWay');
+
+var GunDAO = require('../models/DAO/gunDAO'),
+    gunDAO = new GunDAO();
+
+// var Gun = require('../models/gun');
+
+var Gunproto = require('../models/gunproto');
+var Gun = new Gunproto();
+
+Gun._id = 'porra!';
+Gun.setBrand('caceta!');
+console.log('getBrand method: ', Gun.getBrand());
+// Gun.__id = 'merda!';
+// console.log('__id value: ',Gun.__id);
+console.log('_id value: ', Gun._id);
+// console.log(Object.getOwnPropertyDescriptor(Gun, "_id"));
+// console.log('Prop. desc. ', Object.getOwnPropertyDescriptor(Gun, "__id"));
+console.log(Object.getOwnPropertyNames(Gun));
+
+router.get('/:category?/:brand?/:caliber?/:serie?', function(req, res) {
+    // gunDAO.read(req.params, function(err, guns) {
+    res.render('armory/list', {
+        guns: {},
+        title: 'Guns',
+    });
+    // })
+});
 
 router.get('/', function(req, res) {
-  gunDAO.readAll(function(err, guns) {
+    // console.log('we\'re on optional / router');
+    // gunDAO.read({}, function(err, guns) {
     res.render('armory/list', {
-      guns: guns,
-      title: 'Guns',
+        guns: {},
+        title: 'Guns',
     });
-  })
-});
-
-router.get('/pistols/:brand?', function(req, res) {
-  // console.log(req.params.brand);
-  gunDAO.readPistols(req.params,function(err, guns) {
-    console.log(guns);
-    res.render('armory/list', {
-      guns: guns,
-      title: 'Pistols',
-    });
-  })
-});
-
-router.get('/smgs', function(req, res) {
-  gunDAO.readSMGs(function(err, guns) {
-    res.render('armory/list', {
-      guns: guns,
-      title: 'SMG\'s',
-    });
-  })
-});
-
-router.get('/shotguns', function(req, res) {
-  gunDAO.readShotguns(function(err, guns) {
-    res.render('armory/list', {
-      guns: guns,
-      title: 'Shotguns',
-    });
-  })
+    // })
 });
 
 module.exports = router;
