@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/router'),
   armory = require('./routes/armory'),
-  users = require('./routes/users');
+  nicepeople = require('./routes/nicepeople');
 
 var app = express();
 
@@ -42,8 +42,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/armory', armory);
-// app.use('/users', users);
-app.use('/users', users);
+// app.use('/nicepeople', nicepeople);
+app.use('/nicepeople', nicepeople);
 app.get('*', function(req, res) {
     res.render('layout');
 });

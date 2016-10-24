@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  h1= title
+  each niceone in nicepeople
+    div
+      h4 #{niceone.name.first}
+      ul
+        li Email: #[span(class="list-values") #{niceone.email}]
+        li Surname: #[span(class="list-values") #{niceone.name.last}]
+        li age: #[span(class="list-values") #{niceone.age}]
+        li Skils:
+          ul
+            each skil in niceone.skils
+              li
+                span(class="list-values") #{skil}
