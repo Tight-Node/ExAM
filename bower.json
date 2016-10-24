@@ -1,6 +1,6 @@
 {
-  "name": "express_angular_mongodb",
-  "description": "Simple Express, Angular and MongoDb app",
+  "name": "underneathshinauav",
+  "description": "",
   "main": "./bin/www",
   "authors": [
     "Thiago Mallon <thiagomallon@gmail.com>"
@@ -19,9 +19,6 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "~3.3.6",
-    "angular": "~1.4.9",
-    "angular-route": "~1.4.9",
-    "EaselJS": "easeljs#~0.8.2"
+    "bootstrap": "^3.3.7"
   }
 }
