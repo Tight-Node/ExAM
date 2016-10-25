@@ -1,14 +1,20 @@
 'use strict';
 
 /**
- * @file Gunes model
+ * @file Gun model
  */
+
+class Mingal {
+  constructor(){
+    console.log('mingal criado');
+  }
+}
 
 /**
  * Represents a gun.
  * @author Thiago Mallon <thiagomallon@gmail.com>
  */
-class Gunes {
+class Gun extends Mingal {
     /**
      * Initializes the object
      * @param {String} _id Sets the _id property value
@@ -18,6 +24,7 @@ class Gunes {
      * @param {String} ammos Sets the ammos property value
      */
     constructor(_id, brand, serie, caliber, ammos) {
+        super();
         /**
          * Property stores the object _id
          * @prop {String} _id The default values for parties.
@@ -76,6 +83,54 @@ class Gunes {
     setBrand(value) {
         this.brand = value;
     }
+
+    /**
+     * Returns the object serie property
+     * @returns {String} serie Returns the id from the object
+     */
+    getSerie() {
+        return this.serie;
+    }
+
+    /**
+     * Sets the object serie property
+     * @param {String} value Value to set serie property
+     */
+    setSerie(value) {
+        this.serie = value;
+    }
+
+    /**
+     * Returns the object caliber property
+     * @returns {String} caliber Returns the id from the object
+     */
+    getCaliber() {
+        return this.caliber;
+    }
+
+    /**
+     * Sets the object caliber property
+     * @param {String} value Value to set caliber property
+     */
+    setCaliber(value) {
+        this.caliber = value;
+    }
+
+    /**
+     * Returns the object ammos property
+     * @returns {String} ammos Returns the id from the object
+     */
+    getAmmos() {
+        return this.ammos;
+    }
+
+    /**
+     * Sets the object ammos property
+     * @param {String} value Value to set ammos property
+     */
+    setAmmos(value) {
+        this.ammos = value;
+    }
 }
 
-module.exports = Gunes;
+module.exports = Gun;

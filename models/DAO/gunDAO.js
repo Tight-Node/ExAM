@@ -1,14 +1,23 @@
 'use strict';
 
+/**
+ * @file GunDAO
+ */
+
+var DAO = require('./DAO');
+
+/**
+ * Represents a gun.
+ * @author Thiago Mallon <thiagomallon@gmail.com>
+ */
 class GunDAO extends DAO {
-    static create() {
-        // Calls Abstract.create();
-        super.create();
+    constructor() {
+        super();
     }
-    create() {
-        // Calls Abstract.prototype.create();
-        super.create();
-    }
+    create() {}
+    read() {}
+    update() {}
+    delete() {}
 }
 
-module.export = GunDAO;
+module.exports = GunDAO;
