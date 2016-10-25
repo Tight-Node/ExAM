@@ -5,7 +5,7 @@ var express = require('express'),
     });
 
 var dbConn = require('../libs/DBConnector');
-var conn = new dbConn(); 
+var conn = new dbConn();
 conn.getConnection('alongDWay');
 
 var GunDAO = require('../models/DAO/gunDAO'),
@@ -13,18 +13,21 @@ var GunDAO = require('../models/DAO/gunDAO'),
 
 // var Gun = require('../models/gun');
 
-var Gunproto = require('../models/gunproto');
-var Gun = new Gunproto();
+// var Gunproto = require('../models/gunproto');
+// var Gun = new Gunproto();
 
-Gun._id = 'porra!';
-Gun.setBrand('caceta!');
+var Gunes = require('../models/gunes');
+var Gun = new Gunes;
+
+Gun.setBrand('porra!');
+// Gun.setBrand('caceta!');
 console.log('getBrand method: ', Gun.getBrand());
 // Gun.__id = 'merda!';
 // console.log('__id value: ',Gun.__id);
-console.log('_id value: ', Gun._id);
+// console.log('_id value: ', Gun._id);
 // console.log(Object.getOwnPropertyDescriptor(Gun, "_id"));
 // console.log('Prop. desc. ', Object.getOwnPropertyDescriptor(Gun, "__id"));
-console.log(Object.getOwnPropertyNames(Gun));
+// console.log(Object.getOwnPropertyNames(Gun));
 
 router.get('/:category?/:brand?/:caliber?/:serie?', function(req, res) {
     // gunDAO.read(req.params, function(err, guns) {
