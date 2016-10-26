@@ -4,37 +4,33 @@ var express = require('express'),
         strict: false
     });
 
-
-// var Gun = require('../models/gun');
-// var gun = new Gun();
-// gun.setBrand('Colt');
-// console.log(gun.getBrand());
-
-// var DAO = require('../models/DAO/DAOPat');
-// console.log(DAO);
+var DB = require('../libs/DBConnector');
+var db = new DB();
+// db.getConnection('rosana');
+// console.log(db.dbs);
+console.log(db.getConnection('rosana'));
+console.log(db.dbs);
+console.log('migue', db.migue);
 
 var GunDAO = require('../models/DAO/gunDAO');
 gunDAO = new GunDAO();
 
-// gunDAO.create(gun);
-
-
 router.get('/:category?/:brand?/:caliber?/:serie?', function(req, res) {
-    // gunDAO.read(req.params, function(err, guns) {
-    res.render('armory/list', {
-        guns: {},
-        title: 'Guns',
-    });
-    // })
+    gunDAO.read(req.params, function(err, guns) {
+        res.render('armory/list', {
+            guns: {},
+            title: 'Guns',
+        });
+    })
 });
 
 router.get('/', function(req, res) {
-    // gunDAO.read({}, function(err, guns) {
-    res.render('armory/list', {
-        guns: {},
-        title: 'Guns',
-    });
-    // })
+    gunDAO.read({}, function(err, guns) {
+        res.render('armory/list', {
+            guns: {},
+            title: 'Guns',
+        });
+    })
 });
 
 module.exports = router;

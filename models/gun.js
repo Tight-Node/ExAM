@@ -4,17 +4,11 @@
  * @file Gun model
  */
 
-class Mingal {
-  constructor(){
-    console.log('mingal criado');
-  }
-}
-
 /**
  * Represents a gun.
  * @author Thiago Mallon <thiagomallon@gmail.com>
  */
-class Gun extends Mingal {
+class Gun {
     /**
      * Initializes the object
      * @param {String} _id Sets the _id property value
