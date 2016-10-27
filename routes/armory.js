@@ -11,10 +11,8 @@ router.get('/:category?/:brand?/:caliber?/:serie?', function(req, res, next) {
     next();
 }, function(req, res) {
     gunDAO.read(req.params, function(err, guns) {
-        // console.log(guns);
         res.render('armory/list', {
             guns: guns,
-            // guns: {},
             title: 'Guns',
         });
     });

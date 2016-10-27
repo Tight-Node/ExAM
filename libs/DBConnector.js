@@ -63,8 +63,7 @@ class DBConnector {
         this.getConnection(function(err, db) {
             if (!err) {
                 console.log("Connected successfully to server");
-                var collection = db.collection(self.collectionName);
-                collection.find({}).toArray(function(err, gun) {
+                db.collection(self.collectionName).find({}).toArray(function(err, gun) {
                     self.result = gun;
                     assistent(err, gun);
                 });
