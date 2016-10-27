@@ -22,20 +22,22 @@
     });
 
     gulp.task('hint', function() {
-        return gulp.src(['./public/libs/*.js', './public/models/*.js', './public/models/DAO/*.js', './public/routes/*.js'])
+        return gulp.src(['./libs/*.js', './models/*.js', './models/DAO/*.js', './routes/*.js'])
             .pipe(jshint())
             .pipe(jshint.reporter('jshint-stylish'))
             .pipe(jshint.reporter('fail'));
     });
 
     gulp.task('doc', function(cb) {
-        gulp.src(['./public/libs/*.js', './public/models/*.js', './public/models/DAO/*.js', './public/routes/*.js'], {
+        gulp.src(['./libs/*.js', './models/*.js', './models/DAO/*.js', './routes/*.js'], {
                 read: false
             })
             .pipe(jsdoc(cb));
     });
 
     gulp.task('watch', function() {
-        gulp.watch('./public/stylesheets/*.scss', ['css', 'hint', 'doc']);
+        gulp.watch('./public/stylesheets/*.scss', ['css']);
+        gulp.watch(['./libs/*.js', './models/*.js', './models/DAO/*.js', './routes/*.js'], ['doc']);
+        gulp.watch(['./libs/*.js', './models/*.js', './models/DAO/*.js', './routes/*.js'], ['hint']);
     });
 }());

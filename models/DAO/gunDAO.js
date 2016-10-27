@@ -51,12 +51,12 @@ class GunDAO extends DBConnector {
     }
 
     /**
-     *
+     * Update docs in database
      */
     update() {}
 
     /**
-     *
+     * Delete docs in database
      */
     delete() {}
 }

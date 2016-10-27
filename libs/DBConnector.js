@@ -79,11 +79,13 @@ class DBConnector {
     }
 
     /**
-     * Updates database docs
+     * Updates database docs.
      * @param {String} dbName Database name to be setted or recovered from DBConnector.dbs properties
      * @returns {Object} Returns a database connection instance
      */
-    change() {}
+    change() {
+
+    }
 
     /**
      * @param {String} dbName Database name to be setted or recovered from DBConnector.dbs properties
