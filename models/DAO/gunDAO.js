@@ -11,6 +11,7 @@ var DBConnector = require('../../libs/DBConnector');
  * @author Thiago Mallon <thiagomallon@gmail.com>
  */
 class GunDAO extends DBConnector {
+
     /**
      * Constructor method from GunDAO. This constructor is calling the parent constructor.
      */
@@ -36,21 +37,11 @@ class GunDAO extends DBConnector {
      * Sets the object ammos property
      * @param {String} value Value to set ammos property
      * @param {Object} cb Value to set ammos property
-     * @returns {Object} res The return from mongodb find()
      */
-    read(paramVal, cb) {
-        console.log('reading');
-        this.list();
-        // if (Object.keys(paramVal).length) {
-        // var query = {};
-        // for (p in paramVal) {
-        //     if (paramVal[p] != undefined) query[p] = paramVal[p];
-        // }
-        // var gunner = Gun.find(query).exec(cb);
-        // return gunner;
-        // }
-        // return Gun.find({}).exec(cb);
-        return {};
+    read(paramVal, assistent) {
+        this.list(function(err, res) {
+            assistent(err, res);
+        });
     }
 
     /**

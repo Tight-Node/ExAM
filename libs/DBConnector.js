@@ -1,6 +1,7 @@
 'use strict';
 
 var express = require('express'),
+    format = require('util').format,
     MongoClient = require('mongodb').MongoClient;
 
 /**
@@ -18,9 +19,20 @@ class DBConnector {
      */
     constructor() {
         /**
+         * @prop {String} dbPort Stores db port number
+         */
+        this.dbPort = process.env['MONGO_NODE_DRIVER_PORT'] != null ? process.env['MONGO_NODE_DRIVER_PORT'] : 27017;
+
+        /**
+         * @prop {String} dbHost Stores db host address
+         */
+        this.dbHost = process.env['MONGO_NODE_DRIVER_HOST'] != null ? process.env['MONGO_NODE_DRIVER_HOST'] : 'localhost';
+
+        /**
          * @prop {String} dbName Stores database name to be instantiated
          */
         this.dbName = 'local';
+
         /**
          * @prop {String} collectionName Stores collection name
          */
@@ -28,16 +40,12 @@ class DBConnector {
     }
 
     /**
-     * @param {String} dbName Database name to be setted or recovered from DBConnector.dbs properties
+     * @param {Callback} assistent Callback function to be called after connection
      * @returns {Object} Returns a database connection instance
      */
     getConnection(assistent) {
-        MongoClient.connect('mongodb://localhost/' + this.dbName, assistent);
-        // MongoClient.connect('mongodb://localhost/' + this.dbName, function(err, db) {
-        //     console.log("Connected successfully to server");
-        //     // self.dbName = db;
-        // });
-        // return this.dbs.dbName;
+        MongoClient.connect(format("mongodb://%s:%s/%s?w=1", this.dbHost, this.dbPort, this.dbName),
+            assistent);
     }
 
     /**
@@ -50,22 +58,22 @@ class DBConnector {
      * @param {String} dbName Database name to be setted or recovered from DBConnector.dbs properties
      * @returns {Object} Returns a database connection instance
      */
-    list() {
-        console.log('listening');
-        var result;
+    list(assistent) {
         var self = this;
         this.getConnection(function(err, db) {
             if (!err) {
                 console.log("Connected successfully to server");
+                var collection = db.collection(self.collectionName);
+                collection.find({}).toArray(function(err, gun) {
+                    self.result = gun;
+                    assistent(err, gun);
+                });
             } else {
                 console.log('An error occurred');
-                console.log(err);
+                assistent(err);
             }
-            self.result = db;
-            db.collection;
             db.close();
         });
-        return result;
     }
 
     /**
