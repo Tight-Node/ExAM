@@ -58,12 +58,12 @@ class DBConnector {
      * @param {String} dbName Database name to be setted or recovered from DBConnector.dbs properties
      * @returns {Object} Returns a database connection instance
      */
-    list(assistent) {
+    list(criteria, assistent) {
         var self = this;
         this.getConnection(function(err, db) {
             if (!err) {
                 console.log("Connected successfully to server");
-                db.collection(self.collectionName).find({}).toArray(function(err, gun) {
+                db.collection(self.collectionName).find(criteria).toArray(function(err, gun) {
                     self.result = gun;
                     assistent(err, gun);
                 });

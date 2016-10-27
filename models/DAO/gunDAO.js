@@ -38,8 +38,14 @@ class GunDAO extends DBConnector {
      * @param {String} value Value to set ammos property
      * @param {Object} cb Value to set ammos property
      */
-    read(paramVal, assistent) {
-        this.list(function(err, res) {
+    read(params, assistent) {
+        let criteria = {};
+        for (let param in params) {
+            if (params[param] && params[param] !== '*') {
+                criteria[param] = params[param];
+            }
+        }
+        this.list(criteria, function(err, res) {
             assistent(err, res);
         });
     }
