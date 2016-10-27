@@ -4,18 +4,20 @@ var express = require('express'),
         strict: false
     });
 
-var DB = require('../libs/DBConnector');
-var db = new DB();
+// var DB = require('../libs/DBConnector');
+// var db = new DB();
 // db.getConnection('rosana');
 // console.log(db.dbs);
-console.log(db.getConnection('rosana'));
-console.log(db.dbs);
-console.log('migue', db.migue);
+// console.log(db.getConnection('rosana'));
+// console.log(db.dbs);
+// console.log('migue', db.migue);
 
 var GunDAO = require('../models/DAO/gunDAO');
 gunDAO = new GunDAO();
+console.log('DB name ->', gunDAO.dbName);
+console.log('Collection name ->', gunDAO.collectionName);
 
-router.get('/:category?/:brand?/:caliber?/:serie?', function(req, res) {
+router.get('/:category?/:brand?/:caliber?/:serie?', function(req, res) {  
     gunDAO.read(req.params, function(err, guns) {
         res.render('armory/list', {
             guns: {},

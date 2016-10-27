@@ -5,7 +5,7 @@ var router = require('express')
   });
 
 router.get('/', function(req, res) {
-  res.render('index/index', {title: 'Welcome aboard, Matey!'});
+  res.render('index/index', {title: 'Stay ready, matey!'});
 });
 
 router.get('/404-error', function(req, res) {

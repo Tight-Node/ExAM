@@ -4,14 +4,13 @@
  * @file GunDAO
  */
 
-var DAO = require('./DAO');
-var db = require('../libs/DBConnector');
+var DBConnector = require('../../libs/DBConnector');
 
 /**
  * Implements a data access object to deal with a gun model.
  * @author Thiago Mallon <thiagomallon@gmail.com>
  */
-class GunDAO extends DAO {
+class GunDAO extends DBConnector {
     /**
      * Constructor method from GunDAO. This constructor is calling the parent constructor.
      */
@@ -20,6 +19,7 @@ class GunDAO extends DAO {
         /**
          * @prop {String} dbName Stores database name to be instantiated
          */
+        // console.log(this.dbName);
         this.dbName = 'alongDWay';
         /**
          * @prop {String} collectionName Stores collection name
@@ -39,15 +39,18 @@ class GunDAO extends DAO {
      * @returns {Object} res The return from mongodb find()
      */
     read(paramVal, cb) {
-        if (Object.keys(paramVal).length) {
-            // var query = {};
-            // for (p in paramVal) {
-            //     if (paramVal[p] != undefined) query[p] = paramVal[p];
-            // }
-            // var gunner = Gun.find(query).exec(cb);
-            // return gunner;
-        }
-        return Gun.find({}).exec(cb);
+        console.log('reading');
+        this.list();
+        // if (Object.keys(paramVal).length) {
+        // var query = {};
+        // for (p in paramVal) {
+        //     if (paramVal[p] != undefined) query[p] = paramVal[p];
+        // }
+        // var gunner = Gun.find(query).exec(cb);
+        // return gunner;
+        // }
+        // return Gun.find({}).exec(cb);
+        return {};
     }
 
     /**

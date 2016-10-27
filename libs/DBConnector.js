@@ -51,15 +51,20 @@ class DBConnector {
      * @returns {Object} Returns a database connection instance
      */
     list() {
+        console.log('listening');
         var result;
         var self = this;
         this.getConnection(function(err, db) {
-            console.log("Connected successfully to server");
+            if (!err) {
+                console.log("Connected successfully to server");
+            } else {
+                console.log('An error occurred');
+                console.log(err);
+            }
             self.result = db;
             db.collection;
             db.close();
         });
-        console.log(result);
         return result;
     }
 
