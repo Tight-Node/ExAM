@@ -9,6 +9,7 @@ var DBConnector = require('../../libs/DBConnector');
 /**
  * Implements a data access object to deal with a gun model.
  * @author Thiago Mallon <thiagomallon@gmail.com>
+ * @extends DBConnector
  */
 class GunDAO extends DBConnector {
 
@@ -20,7 +21,6 @@ class GunDAO extends DBConnector {
         /**
          * @prop {String} dbName Stores database name to be instantiated
          */
-        // console.log(this.dbName);
         this.dbName = 'alongDWay';
         /**
          * @prop {String} collectionName Stores collection name
@@ -29,20 +29,20 @@ class GunDAO extends DBConnector {
     }
 
     /**
-     * Creates a new gun in database
+     * Creates a new doc in database
      */
     create() {}
 
     /**
-     * Sets the object ammos property
-     * @param {String} value Value to set ammos property
-     * @param {Object} cb Value to set ammos property
+     * Implements searching/listing of docs in mongodb database
+     * @param {Object} params Params to the searching criteria
+     * @param {Callback} assistent Callback func to be called
      */
     read(params, assistent) {
         let criteria = {};
         for (let param in params) {
             if (params[param] && params[param] !== '*') {
-                criteria[param] = params[param];
+                criteria[param] = new RegExp(params[param], "i");
             }
         }
         this.list(criteria, function(err, res) {

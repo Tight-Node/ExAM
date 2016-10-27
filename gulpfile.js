@@ -4,6 +4,7 @@
     var gulp = require('gulp'),
         concat = require('gulp-concat'),
         jshint = require('gulp-jshint'),
+        jsdoc = require('gulp-jsdoc3'),
         uglify = require('gulp-uglify'),
         sass = require('gulp-sass');
 
@@ -20,20 +21,21 @@
             .pipe(gulp.dest('./public/stylesheets/'));
     });
 
-    gulp.task('js', function() {
-        return gulp.src('./src/*.js')
-            .pipe(concat('all.min.js'))
-            .pipe(uglify({
-                mangle: false
-            }))
-            .pipe(gulp.dest('./public/javascripts/dist/'));
+    gulp.task('hint', function() {
+        return gulp.src(['./public/libs/*.js', './public/models/*.js', './public/models/DAO/*.js', './public/routes/*.js'])
+            .pipe(jshint())
+            .pipe(jshint.reporter('jshint-stylish'))
+            .pipe(jshint.reporter('fail'));
+    });
+
+    gulp.task('doc', function(cb) {
+        gulp.src(['./public/libs/*.js', './public/models/*.js', './public/models/DAO/*.js', './public/routes/*.js'], {
+                read: false
+            })
+            .pipe(jsdoc(cb));
     });
 
     gulp.task('watch', function() {
-        gulp.watch('./public/stylesheets/*.scss', ['css']);
-        // gulp.watch('./src/*.js', ['js']);
+        gulp.watch('./public/stylesheets/*.scss', ['css', 'hint', 'doc']);
     });
-
-    // gulp.task('default', ['css', 'js', 'watch']);
-    // gulp.task('build', ['css', 'js']);
 }());

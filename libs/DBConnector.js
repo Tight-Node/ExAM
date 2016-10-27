@@ -40,6 +40,7 @@ class DBConnector {
     }
 
     /**
+     * Creates the mongodb connection
      * @param {Callback} assistent Callback function to be called after connection
      * @returns {Object} Returns a database connection instance
      */
@@ -49,12 +50,14 @@ class DBConnector {
     }
 
     /**
+     * Insert a new doc in the database
      * @param {String} dbName Database name to be setted or recovered from DBConnector.dbs properties
      * @returns {Object} Returns a database connection instance
      */
     insert() {}
 
     /**
+     * Executes a find command in the database
      * @param {String} dbName Database name to be setted or recovered from DBConnector.dbs properties
      * @returns {Object} Returns a database connection instance
      */
@@ -62,7 +65,7 @@ class DBConnector {
         var self = this;
         this.getConnection(function(err, db) {
             if (!err) {
-                console.log("Connected successfully to server");
+                console.log("Connected successfully to mongodb server");
                 db.collection(self.collectionName).find(criteria).toArray(function(err, gun) {
                     self.result = gun;
                     assistent(err, gun);
@@ -76,6 +79,7 @@ class DBConnector {
     }
 
     /**
+     * Updates database docs
      * @param {String} dbName Database name to be setted or recovered from DBConnector.dbs properties
      * @returns {Object} Returns a database connection instance
      */
