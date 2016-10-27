@@ -7,9 +7,7 @@ var express = require('express'),
 var GunDAO = require('../models/DAO/gunDAO');
 gunDAO = new GunDAO();
 
-router.get('/:category?/:brand?/:caliber?/:serie?', function(req, res, next) {
-    next();
-}, function(req, res) {
+router.get('/:category?/:brand?/:caliber?/:serie?', function(req, res) {
     gunDAO.read(req.params, function(err, guns) {
         res.render('armory/list', {
             guns: guns,
