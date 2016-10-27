@@ -6,7 +6,7 @@ var router = require('express')
 
 router.get('/', function(req, res) {
     res.render('index/index', {
-        title: 'Stay frosty and alert, matey!'
+        title: 'Stay frosty, matey...'
     });
 });
 
