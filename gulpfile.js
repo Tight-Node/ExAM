@@ -48,7 +48,6 @@
 
     gulp.task('watch', function() {
         gulp.watch('./public/stylesheets/*.scss', ['css']);
-        gulp.watch(['./libs/*.js', './models/*.js', './models/DAO/*.js', './routes/*.js'], ['doc']);
         gulp.watch(['./libs/*.js', './models/*.js', './models/DAO/*.js', './routes/*.js'], ['hint']);
     });
 }());

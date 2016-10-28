@@ -1,6 +1,7 @@
 # FOLDERS
 node_modules/
 bower_components/
+docs/
 
 # FILES
 *_old*

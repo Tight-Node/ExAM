@@ -20,12 +20,12 @@ class DBConnector {
         /**
          * @prop {String} dbPort Stores db port number
          */
-        this.dbPort = process.env['MONGO_NODE_DRIVER_PORT'] != null ? process.env['MONGO_NODE_DRIVER_PORT'] : 27017;
+        this.dbPort = process.env.MONGO_NODE_DRIVER_PORT !== 'null' ? process.env.MONGO_NODE_DRIVER_PORT : 27017;
 
         /**
          * @prop {String} dbHost Stores db host address
          */
-        this.dbHost = process.env['MONGO_NODE_DRIVER_HOST'] != null ? process.env['MONGO_NODE_DRIVER_HOST'] : 'localhost';
+        this.dbHost = process.env.MONGO_NODE_DRIVER_HOST !== 'null' ? process.env.MONGO_NODE_DRIVER_HOST : 'localhost';
 
         /**
          * @prop {String} dbName Stores database name to be instantiated
