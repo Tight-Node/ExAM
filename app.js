@@ -8,7 +8,6 @@ var express = require('express'),
 
 // route files
 var routes = require('./routes/router'),
-    armory = require('./routes/armory'),
     users = require('./routes/users');
 
 var app = express();
@@ -44,7 +43,6 @@ app.use(bodyParser.json())
 
 // routes
 app.use('/', routes);
-app.use('/armory', armory);
 app.use('/users', users);
 app.get('*', function(req, res) {
     res.render('layout');
