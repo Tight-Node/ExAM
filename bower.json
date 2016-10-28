@@ -1,20 +1,20 @@
 {
-  "name": "UnderneathShinAuAv",
-  "description": "real even laying in the abstraction. Not a messy joke, but not the dummy way; widely use and testing of principles (SOLID, DRY, KISS) and applied concepts with psr's standardizations. Relevant concepts are not explicit and the good understanding stands behind the domain of SOLID principles, Design Patterns and PSR's. I could easily suggest you go deep in all of that, but it is better you to walk aroud first. Try it by yourself...Oh! And enjoy the shooting stars..",
-  "main": "./bin/www",
-  "authors": [
-    "Thiago Mallon <thiagomallon@gmail.com>"
-  ],
-  "license": "MIT",
-  "homepage": "https://github.com/Tight-Node/ExAM",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "bootstrap": "^3.3.7"
-  }
+    "name": "UnderneathShinAuAv",
+    "description": "real even laying in the abstraction. Not a messy joke, but not the dummy way; widely use and testing of principles (SOLID, DRY, KISS) and applied concepts with psr's standardizations. Relevant concepts are not explicit and the good understanding stands behind the domain of SOLID principles, Design Patterns and PSR's. I could easily suggest you go deep in all of that, but it is better you to walk aroud first. Try it by yourself...Oh! And enjoy the shooting stars..",
+    "main": "./bin/www",
+    "authors": [
+        "Thiago Mallon <thiagomallon@gmail.com>"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/Tight-Node/ExAM",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "bootstrap": "^3.3.7"
+    }
 }

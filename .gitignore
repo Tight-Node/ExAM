@@ -1,0 +1,6 @@
+# FOLDERS
+node_modules/
+bower_components/
+
+# FILES
+*_old*

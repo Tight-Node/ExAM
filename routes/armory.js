@@ -1,13 +1,11 @@
 var express = require('express'),
-    mongoose = require('mongoose'),
     router = express.Router({
         caseSensitive: false,
-        strict: true
+        strict: false
     });
 
-var GunDAO = require('../models/DAO/gunsDAO'),
-    gunDAO = new GunDAO();
-
+var GunDAO = require('../models/DAO/gunDAO');
+gunDAO = new GunDAO();
 
 router.get('/:category?/:brand?/:caliber?/:serie?', function(req, res) {
     gunDAO.read(req.params, function(err, guns) {
@@ -15,7 +13,7 @@ router.get('/:category?/:brand?/:caliber?/:serie?', function(req, res) {
             guns: guns,
             title: 'Guns',
         });
-    })
+    });
 });
 
 router.get('/', function(req, res) {
@@ -25,7 +23,7 @@ router.get('/', function(req, res) {
             guns: guns,
             title: 'Guns',
         });
-    })
+    });
 });
 
 module.exports = router;
