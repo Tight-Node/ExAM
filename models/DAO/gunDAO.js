@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @file GunDAO
  */
@@ -17,6 +15,7 @@ class GunDAO extends DBConnector {
      * Constructor method from GunDAO. This constructor is calling the parent constructor.
      */
     constructor() {
+        'use strict';
         super();
         /**
          * @prop {String} dbName Stores database name to be instantiated
@@ -31,21 +30,24 @@ class GunDAO extends DBConnector {
     /**
      * Creates a new doc in database
      */
-    create() {}
+    create() {
+        'use strict';
+    }
 
     /**
      * Implements searching/listing of docs in mongodb database
-     * @param {Object} params Params to the searching criteria
+     * @param {Object} params Params to the searching query
      * @param {Callback} assistent Callback func to be called
      */
     read(params, assistent) {
-        let criteria = {};
+        'use strict';
+        var query = {};
         for (let param in params) {
             if (params[param] && params[param] !== '*') {
-                criteria[param] = new RegExp(params[param], "i");
+                query[param] = new RegExp(params[param], "i");
             }
         }
-        this.list(criteria, function(err, res) {
+        this.list(query, function(err, res) {
             assistent(err, res);
         });
     }
@@ -53,12 +55,16 @@ class GunDAO extends DBConnector {
     /**
      * Update docs in database
      */
-    update() {}
+    update() {
+        'use strict';
+    }
 
     /**
      * Delete docs in database
      */
-    delete() {}
+    delete() {
+        'use strict';
+    }
 }
 
 module.exports = GunDAO;

@@ -1,5 +1,3 @@
-'use strict';
-
 var express = require('express'),
     format = require('util').format,
     MongoClient = require('mongodb').MongoClient;
@@ -18,6 +16,7 @@ class DBConnector {
      * Constructor method from DBConnector class. Creates and initializes properties.
      */
     constructor() {
+        'use strict';
         /**
          * @prop {String} dbPort Stores db port number
          */
@@ -45,6 +44,7 @@ class DBConnector {
      * @returns {Object} Returns a database connection instance
      */
     getConnection(assistent) {
+        'use strict';
         MongoClient.connect(format("mongodb://%s:%s/%s?w=1", this.dbHost, this.dbPort, this.dbName),
             assistent);
     }
@@ -54,19 +54,26 @@ class DBConnector {
      * @param {String} dbName Database name to be setted or recovered from DBConnector.dbs properties
      * @returns {Object} Returns a database connection instance
      */
-    insert() {}
+    insert() {
+        'use strict';
+    }
 
     /**
      * Executes a find command in the database
      * @param {String} dbName Database name to be setted or recovered from DBConnector.dbs properties
      * @returns {Object} Returns a database connection instance
      */
-    list(criteria, assistent) {
+    list(query, assistent) {
+        'use strict';
         var self = this;
         this.getConnection(function(err, db) {
             if (!err) {
                 console.log("Connected successfully to mongodb server");
-                db.collection(self.collectionName).find(criteria).toArray(function(err, gun) {
+                db.collection(self.collectionName).find(query, {
+                    // "limit": 20,
+                    // "skip": 0,
+                    // "sort": "brand"
+                }).toArray(function(err, gun) {
                     self.result = gun;
                     assistent(err, gun);
                 });
@@ -84,14 +91,16 @@ class DBConnector {
      * @returns {Object} Returns a database connection instance
      */
     change() {
-
+        'use strict';
     }
 
     /**
      * @param {String} dbName Database name to be setted or recovered from DBConnector.dbs properties
      * @returns {Object} Returns a database connection instance
      */
-    remove() {}
+    remove() {
+        'use strict';
+    }
 }
 
 module.exports = DBConnector;

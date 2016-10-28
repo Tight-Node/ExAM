@@ -12,7 +12,7 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
-    .set('view engine', 'jade')
+    .set('view engine', 'pug')
     .set('view options', {
         layout: false
     });

@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @file Gun model
  */
@@ -18,6 +16,7 @@ class Gun {
      * @param {String} ammos Sets the ammos property value
      */
     constructor(_id, brand, serie, caliber, ammos) {
+        'use strict';
         super();
         /**
          * Property stores the object _id
@@ -51,6 +50,7 @@ class Gun {
      * @returns {String} _id Returns the id from the object
      */
     getId() {
+        'use strict';
         return this._id;
     }
 
@@ -59,6 +59,7 @@ class Gun {
      * @param {String} value Value to set _id property
      */
     setId(value) {
+        'use strict';
         this._id = value;
     }
 
@@ -67,6 +68,7 @@ class Gun {
      * @returns {String} brand Returns the id from the object
      */
     getBrand() {
+        'use strict';
         return this.brand;
     }
 
@@ -75,6 +77,7 @@ class Gun {
      * @param {String} value Value to set brand property
      */
     setBrand(value) {
+        'use strict';
         this.brand = value;
     }
 
@@ -83,6 +86,7 @@ class Gun {
      * @returns {String} serie Returns the id from the object
      */
     getSerie() {
+        'use strict';
         return this.serie;
     }
 
@@ -91,6 +95,7 @@ class Gun {
      * @param {String} value Value to set serie property
      */
     setSerie(value) {
+        'use strict';
         this.serie = value;
     }
 
@@ -99,6 +104,7 @@ class Gun {
      * @returns {String} caliber Returns the id from the object
      */
     getCaliber() {
+        'use strict';
         return this.caliber;
     }
 
@@ -107,6 +113,7 @@ class Gun {
      * @param {String} value Value to set caliber property
      */
     setCaliber(value) {
+        'use strict';
         this.caliber = value;
     }
 
@@ -115,6 +122,7 @@ class Gun {
      * @returns {String} ammos Returns the id from the object
      */
     getAmmos() {
+        'use strict';
         return this.ammos;
     }
 
@@ -123,6 +131,7 @@ class Gun {
      * @param {String} value Value to set ammos property
      */
     setAmmos(value) {
+        'use strict';
         this.ammos = value;
     }
 }

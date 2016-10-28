@@ -2,11 +2,21 @@
     'use strict';
 
     var gulp = require('gulp'),
+        clean = require('gulp-clean'),
         concat = require('gulp-concat'),
         jshint = require('gulp-jshint'),
         jsdoc = require('gulp-jsdoc3'),
         uglify = require('gulp-uglify'),
         sass = require('gulp-sass');
+
+    gulp.task('clean', function() {
+        return gulp.src('./docs', {
+                read: false
+            })
+            .pipe(clean({
+                force: true
+            }));
+    });
 
     // --- Basic Tasks ---
     gulp.task('css', function() {
@@ -29,10 +39,11 @@
     });
 
     gulp.task('doc', function(cb) {
+        let config = require('./jsdoc-conf');
         gulp.src(['./libs/*.js', './models/*.js', './models/DAO/*.js', './routes/*.js'], {
                 read: false
             })
-            .pipe(jsdoc(cb));
+            .pipe(jsdoc(config, cb));
     });
 
     gulp.task('watch', function() {

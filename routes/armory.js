@@ -22,7 +22,7 @@ router.get('/', function(req, res) {
             guns: {},
             title: 'Guns',
         });
-    })
+    });
 });
 
 module.exports = router;
