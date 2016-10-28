@@ -1,18 +1,18 @@
 /**
- * @file Represents a GunDAO DAO class
+ * @file Represents a UserDAO DAO class
  */
 
 var DBConnector = require('../../libs/DBConnector');
 
 /**
- * Implements a data access object to deal with a gun model.
+ * Implements a data access object to deal with a user model.
  * @author Thiago Mallon <thiagomallon@gmail.com>
  * @extends DBConnector
  */
-class GunDAO extends DBConnector {
+class UserDAO extends DBConnector {
 
     /**
-     * Constructor method from GunDAO. This constructor is calling the parent constructor.
+     * Constructor method from UserDAO. This constructor is calling the parent constructor.
      */
     constructor() {
         'use strict';
@@ -24,7 +24,7 @@ class GunDAO extends DBConnector {
         /**
          * @prop {String} collectionName Stores collection name
          */
-        this.collectionName = 'gun';
+        this.collectionName = 'users';
     }
 
     /**
@@ -56,6 +56,7 @@ class GunDAO extends DBConnector {
                 query[param] = new RegExp(params[param], "i");
             }
         }
+        // this.list(query, {}, function(err, res) {
         this.listAll(query, {}, function(err, res) {
             assistent(err, res);
         });
@@ -94,4 +95,4 @@ class GunDAO extends DBConnector {
     }
 }
 
-module.exports = GunDAO;
+module.exports = UserDAO;

@@ -9,10 +9,14 @@ gunDAO = new GunDAO();
 
 router.get('/:category?/:brand?/:caliber?/:serie?', function(req, res) {
     gunDAO.read(req.params, function(err, guns) {
-        res.render('armory/list', {
-            guns: guns,
-            title: 'Guns',
-        });
+        if (!err) {
+            res.render('armory/list', {
+                guns: guns,
+                title: 'Gerador',
+            });
+        } else {
+            res.send(err);
+        }
     });
 });
 

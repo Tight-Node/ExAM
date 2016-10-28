@@ -1,4 +1,5 @@
 var express = require('express'),
+    co = require('co'),
     format = require('util').format,
     MongoClient = require('mongodb').MongoClient;
 
@@ -54,8 +55,53 @@ class DBConnector {
      * @param {String} dbName Database name to be setted or recovered from DBConnector.dbs properties
      * @returns {Object} Returns a database connection instance
      */
-    insert() {
+    addOne(query, assistent) {
         'use strict';
+        var self = this;
+        this.getConnection(function(err, db) {
+            if (!err) {
+                console.log("Connected successfully to mongodb server");
+                db.collection(self.collectionName).insertOne(query)
+                    .toArray(function(err, gun) {
+                        self.result = gun;
+                        assistent(err, gun);
+                    });
+            } else {
+                console.log('An error occurred');
+                assistent(err);
+            }
+            db.close();
+        });
+    }
+
+    /**
+     * Insert a new doc in the database
+     * @param {String} dbName Database name to be setted or recovered from DBConnector.dbs properties
+     * @returns {Object} Returns a database connection instance
+     */
+    addMany(query, assistent) {
+        'use strict';
+        co(function*() {
+            // Connection URL
+            var db = yield MongoClient.connect(format("mongodb://%s:%s/%s?w=1", this.dbHost, this.dbPort, this.dbName));
+            console.log("Connected correctly to server");
+
+            // MongoClient.connect(format("mongodb://%s:%s/%s?w=1", this.dbHost, this.dbPort, this.dbName),
+            //     assistent);
+
+            // Insert a single document
+            var r = yield db.collection('inserts').insertOne(query, {
+                w: 'majority',
+                wtimeout: 10000,
+                serializeFunctions: true,
+                forceServerObjectId: true
+            });
+
+            assert.equal(1, r.insertedCount);
+            db.close();
+        }).catch(function(err) {
+            console.log(err.stack);
+        });
     }
 
     /**
@@ -79,6 +125,27 @@ class DBConnector {
                 assistent(err);
             }
             db.close();
+        });
+    }
+
+    listAll(query, options, assistent) {
+        'use strict';
+        var self = this;
+        co(function*() {
+            // Connection URL
+            var db = yield MongoClient.connect(format("mongodb://%s:%s/%s?w=1", self.dbHost, self.dbPort, self.dbName));
+            console.log("Connected correctly to server");
+
+            var col = db.collection(self.collectionName);
+
+            var docs = yield col.find(query, options)
+                .toArray(function(err, gun) {
+                    self.result = gun;
+                    assistent(err, gun);
+                });
+            db.close();
+        }).catch(function(err) {
+            // assistent(err);
         });
     }
 

@@ -1,3 +1,4 @@
+// packages
 var express = require('express'),
     path = require('path'),
     favicon = require('serve-favicon'),
@@ -5,8 +6,10 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser');
 
+// route files
 var routes = require('./routes/router'),
-    armory = require('./routes/armory');
+    armory = require('./routes/armory'),
+    users = require('./routes/users');
 
 var app = express();
 
@@ -17,7 +20,7 @@ app.set('views', path.join(__dirname, 'views'))
         layout: false
     });
 
-// configs
+// environment configs
 app.disable('x-powered-by') // ensure express header disable (helmet applies it)
     .disable('case sensitive routing') // ensuring no difference between /home or /HOME
     // .enable('strict routing') // ensuring no difference between /home or /home/
@@ -39,9 +42,10 @@ app.use(bodyParser.json())
     }))
     .use(cookieParser());
 
-// routes 
+// routes
 app.use('/', routes);
 app.use('/armory', armory);
+app.use('/users', users);
 app.get('*', function(req, res) {
     res.render('layout');
 });
