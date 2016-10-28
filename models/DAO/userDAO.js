@@ -56,8 +56,7 @@ class UserDAO extends DBConnector {
                 query[param] = new RegExp(params[param], "i");
             }
         }
-        // this.list(query, {}, function(err, res) {
-        this.listAll(query, {}, function(err, res) {
+        this.list(query, {}, function(err, res) {
             assistent(err, res);
         });
     }
