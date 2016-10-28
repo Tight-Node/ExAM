@@ -11,22 +11,20 @@
 
     gulp.task('clean', function() {
         return gulp.src('./docs', {
-                read: false
-            })
-            .pipe(clean({
-                force: true
-            }));
+            read: false
+        }).pipe(clean({
+            force: true
+        }));
     });
 
     // --- Basic Tasks ---
     gulp.task('css', function() {
         return gulp.src('./public/stylesheets/sass/*.scss')
-            .pipe(
-                sass({
-                    includePaths: ['./public/stylesheets/'],
-                    errLogToConsole: true,
-                    outputStyle: 'compressed'
-                }))
+            .pipe(sass({
+                includePaths: ['./public/stylesheets/'],
+                errLogToConsole: true,
+                outputStyle: 'compressed'
+            }))
             .pipe(concat('style.css'))
             .pipe(gulp.dest('./public/stylesheets/'));
     });

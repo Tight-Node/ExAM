@@ -1,5 +1,5 @@
 /**
- * @file Gun model
+ * @file Represents a Gun model class
  */
 
 /**

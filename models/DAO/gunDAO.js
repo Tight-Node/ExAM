@@ -1,5 +1,5 @@
 /**
- * @file GunDAO
+ * @file Represents a GunDAO DAO class
  */
 
 var DBConnector = require('../../libs/DBConnector');
@@ -32,6 +32,15 @@ class GunDAO extends DBConnector {
      */
     create() {
         'use strict';
+        var query = {};
+        for (let param in params) {
+            if (params[param] && params[param] !== '*') {
+                query[param] = new RegExp(params[param], "i");
+            }
+        }
+        this.list(query, function(err, res) {
+            assistent(err, res);
+        });
     }
 
     /**
@@ -47,7 +56,7 @@ class GunDAO extends DBConnector {
                 query[param] = new RegExp(params[param], "i");
             }
         }
-        this.list(query, function(err, res) {
+        this.list(query, {}, function(err, res) {
             assistent(err, res);
         });
     }
@@ -57,6 +66,15 @@ class GunDAO extends DBConnector {
      */
     update() {
         'use strict';
+        var query = {};
+        for (let param in params) {
+            if (params[param] && params[param] !== '*') {
+                query[param] = new RegExp(params[param], "i");
+            }
+        }
+        this.list(query, function(err, res) {
+            assistent(err, res);
+        });
     }
 
     /**
@@ -64,6 +82,15 @@ class GunDAO extends DBConnector {
      */
     delete() {
         'use strict';
+        var query = {};
+        for (let param in params) {
+            if (params[param] && params[param] !== '*') {
+                query[param] = new RegExp(params[param], "i");
+            }
+        }
+        this.list(query, function(err, res) {
+            assistent(err, res);
+        });
     }
 }
 

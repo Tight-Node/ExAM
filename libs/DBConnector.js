@@ -3,7 +3,7 @@ var express = require('express'),
     MongoClient = require('mongodb').MongoClient;
 
 /**
- * @file Gun model
+ * @file Represents a DBConnector class
  */
 
 /**
@@ -20,12 +20,12 @@ class DBConnector {
         /**
          * @prop {String} dbPort Stores db port number
          */
-        this.dbPort = process.env.MONGO_NODE_DRIVER_PORT !== 'null' ? process.env.MONGO_NODE_DRIVER_PORT : 27017;
+        this.dbPort = typeof process.env.MONGO_NODE_DRIVER_PORT !== 'undefined' ? process.env.MONGO_NODE_DRIVER_PORT : 27017;
 
         /**
          * @prop {String} dbHost Stores db host address
          */
-        this.dbHost = process.env.MONGO_NODE_DRIVER_HOST !== 'null' ? process.env.MONGO_NODE_DRIVER_HOST : 'localhost';
+        this.dbHost = typeof process.env.MONGO_NODE_DRIVER_HOST !== 'undefined' ? process.env.MONGO_NODE_DRIVER_HOST : 'localhost';
 
         /**
          * @prop {String} dbName Stores database name to be instantiated
@@ -63,20 +63,17 @@ class DBConnector {
      * @param {String} dbName Database name to be setted or recovered from DBConnector.dbs properties
      * @returns {Object} Returns a database connection instance
      */
-    list(query, assistent) {
+    list(query, options, assistent) {
         'use strict';
         var self = this;
         this.getConnection(function(err, db) {
             if (!err) {
                 console.log("Connected successfully to mongodb server");
-                db.collection(self.collectionName).find(query, {
-                    // "limit": 20,
-                    // "skip": 0,
-                    // "sort": "brand"
-                }).toArray(function(err, gun) {
-                    self.result = gun;
-                    assistent(err, gun);
-                });
+                db.collection(self.collectionName).find(query, options)
+                    .toArray(function(err, gun) {
+                        self.result = gun;
+                        assistent(err, gun);
+                    });
             } else {
                 console.log('An error occurred');
                 assistent(err);

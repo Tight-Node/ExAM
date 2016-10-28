@@ -30,15 +30,16 @@ if (app.settings.env !== 'development') { // check if app is on development stat
 
 // directories
 app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')))
-    .use(express.static(path.join(__dirname, 'public')))
-    .use(bodyParser.json())
+    .use(express.static(path.join(__dirname, 'public')));
+
+// parsers
+app.use(bodyParser.json())
     .use(bodyParser.urlencoded({
         extended: false
     }))
-    .use(cookieParser())
-    .use(express.static(path.join(__dirname, 'public')));
+    .use(cookieParser());
 
-// routes management
+// routes 
 app.use('/', routes);
 app.use('/armory', armory);
 app.get('*', function(req, res) {
