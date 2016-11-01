@@ -7,12 +7,12 @@ var express = require('express'),
 var UserDAO = require('../models/DAO/userDAO');
 userDAO = new UserDAO();
 
-router.get('/:name.first?/:name.last?/:age?/:email?/:created?', function(req, res) {
+router.get('/list/:name.first?/:name.last?/:age?/:email?/:created?', function(req, res) {
     userDAO.read(req.params, {}, function(err, users) {
         if (!err) {
             res.render('users/list', {
                 users: users,
-                title: 'Gerador - Users',
+                title: 'Gerador',
             });
         } else {
             res.send(err);
@@ -20,11 +20,11 @@ router.get('/:name.first?/:name.last?/:age?/:email?/:created?', function(req, re
     });
 });
 
-router.get('/', function(req, res) {
+router.get('/list', function(req, res) {
     userDAO.read({}, {}, function(err, users) {
         res.render('users/list', {
             users: users,
-            title: 'Gerador - Users',
+            title: 'Gerador',
         });
     });
 });
@@ -32,7 +32,14 @@ router.get('/', function(req, res) {
 router.post('/remove', function(req, res) {
     userDAO.delete(req.body, {},
         function(err, result) {
-            res.redirect('/users');
+            res.redirect('/users/list');
+        });
+});
+
+router.post('/modify', function(req, res) {
+    userDAO.change(req.body, {},
+        function(err, result) {
+            res.redirect('/users/list');
         });
 });
 

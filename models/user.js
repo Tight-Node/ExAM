@@ -11,15 +11,14 @@ class User {
     /**
      * Initializes the object
      * @param {String} _id Sets the _id property value
-     * @param {String} nameFirst Sets the nameFirst property value
-     * @param {String} nameLast Sets the nameLast property value
+     * @param {String} name Sets the fist and last name property value
      * @param {String} email Sets the email property value
      * @param {String} age Sets the age property value
      * @param {String[]} skills Sets the skills property value
      * @param {String} created Sets the created property value
      * @param {String[]} logins Sets the logins property value
      */
-    constructor(_id, nameFist, nameLast, email, age, skills, created, logins) {
+    constructor(_id, fistName, lastName, email, age, skills, created, logins) {
         'use strict';
         super();
 
@@ -30,10 +29,25 @@ class User {
         this._id = _id;
 
         /**
-         * Property stores the object nameFirst
-         * @prop {string} nameFirst The default values for parties.
+         * Property stores the object name
+         * @prop {string} name The default values for parties.
          */
-        this.nameFirst = nameFirst;
+        this.name = {
+            'first': null,
+            'last': null
+        };
+
+        /**
+         * Property stores the object name.first
+         * @prop {string} name.first The default values for parties.
+         */
+        this.name.first = firstName;
+
+        /**
+         * Property stores the object name.last
+         * @prop {string} name.last The default values for parties.
+         */
+        this.name.last = lastName;
 
         /**
          * Property stores the object nameLast
@@ -91,39 +105,39 @@ class User {
     }
 
     /**
-     * Returns the object nameFirst property
-     * @returns {String} nameFirst Returns the id from the object
+     * Returns the object name.first property
+     * @returns {String} name.first Returns the id from the object
      */
-    getNameFirst() {
+    getFirstName() {
         'use strict';
-        return this.nameFirst;
+        return this.name.first;
     }
 
     /**
-     * Sets the object nameFirst property value
-     * @param {String} value Value to set nameFirst property
+     * Sets the object name.first property value
+     * @param {String} value Value to set name.first property
      */
-    setNameFirst(value) {
+    setFirstName(value) {
         'use strict';
-        this.nameFirst = value;
+        this.name.first = value;
     }
 
     /**
-     * Returns the object nameLast property
-     * @returns {String} nameLast Returns the id from the object
+     * Returns the object name.last property
+     * @returns {String} name.last Returns the id from the object
      */
-    getNameLast() {
+    getLastName() {
         'use strict';
-        return this.nameLast;
+        return this.name.last;
     }
 
     /**
-     * Sets the object nameLast property value
+     * Sets the object name.last property value
      * @param {String} value Value to set nameLast property
      */
-    setNameLast(value) {
+    setLastName(value) {
         'use strict';
-        this.nameLast = value;
+        this.name.last = value;
     }
 
     /**

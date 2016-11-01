@@ -37,7 +37,8 @@ app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')))
 // parsers
 app.use(bodyParser.json())
     .use(bodyParser.urlencoded({
-        extended: false
+        // extended: false
+        extended: true // convert dom elements named with json to json
     }))
     .use(cookieParser());
 

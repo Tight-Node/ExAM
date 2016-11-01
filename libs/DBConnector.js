@@ -42,9 +42,10 @@ class DBConnector {
 
     /**
      * Method implements database connection
+     * @returns {Object} MysqlClient.connect Returns a database connection instance
      */
     getConnection() {
-        // Connection URL
+        'use strict';
         return MongoClient.connect(format("mongodb://%s:%s/%s?w=1", this.dbHost, this.dbPort, this.dbName));
     }
 
@@ -52,8 +53,9 @@ class DBConnector {
      * Method implements database connection close.
      * @param {Object} dbConn Mongodb client instance object
      */
-    closeConnection(dbConn) {
-        dbConn.close();
+    closeConnection(db) {
+        'use strict';
+        db.close();
     }
 
     /**
@@ -65,9 +67,8 @@ class DBConnector {
         'use strict';
         var self = this;
         co(function*() {
-            // Connection URL
-            var db = yield MongoClient.connect(format("mongodb://%s:%s/%s?w=1", self.dbHost, self.dbPort, self.dbName));
-            console.log("Connected correctly to server");
+            /* get the database connection instance */
+            var db = yield self.getConnection();
 
             var col = db.collection(self.collectionName);
 
@@ -86,24 +87,28 @@ class DBConnector {
      * Updates database docs.
      * @param {Object} query Query to be executed
      * @param {Object} options Options to be applied to the query
+     * @param {Object} set New values to be setted
      * @param {Callback} assistent Callback function retrieve data
      */
-    change(query, options, assistent) {
+    update(query, set, options, assistent) {
         'use strict';
         var self = this;
         co(function*() {
-            // Connection URL
-            var db = yield MongoClient.connect(format("mongodb://%s:%s/%s?w=1", self.dbHost, self.dbPort, self.dbName));
-            console.log("Connected correctly t2o server");
+            /* get the database connection instance */
+            var db = yield self.getConnection();
 
             /* not assynchronous _id conversion */
             query = self.convertObjectId(query);
 
+            // console.log('received params: ');
+            // console.log(query);
+            // console.log(set);
+
             var docs = yield db.collection(self.collectionName)
-                .remove(query, options, function(err, result) {
+                .update(query, set, options, function(err, result) {
                     assistent(err, result);
+                    // assistent(null, {});
                 });
-            assistent(null, query);
             db.close();
         }).catch(function(err) {
             // assistent(err);
@@ -120,8 +125,8 @@ class DBConnector {
         'use strict';
         var self = this;
         co(function*() {
-            // Connection URL
-            var db = yield MongoClient.connect(format("mongodb://%s:%s/%s?w=1", self.dbHost, self.dbPort, self.dbName));
+            /* get the database connection instance */
+            var db = yield self.getConnection();
 
             /* not assynchronous _id conversion */
             query = self.convertObjectId(query);
@@ -130,7 +135,6 @@ class DBConnector {
                 .remove(query, options, function(err, result) {
                     assistent(err, result);
                 });
-            assistent(null, query);
             db.close();
         }).catch(function(err) {
             // assistent(err);
@@ -168,8 +172,10 @@ class DBConnector {
      * @returns query Returns query object with _id element converted to the mongodb ObjectId
      */
     convertObjectId(query) {
-        (!query.hasOwnProperty('_id')) ? null:
+        'use strict';
+        if (query.hasOwnProperty('_id')) {
             query._id = new mongodb.ObjectID(query._id);
+        }
         return query;
     }
 }

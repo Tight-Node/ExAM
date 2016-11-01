@@ -36,7 +36,7 @@ class UserDAO extends DBConnector {
     create(params, options, assistent) {
         'use strict';
         var query = this.caseInsensitiveParam(params);
-        this.list(query, options, function(err, res) {
+        this.insert(query, options, function(err, res) {
             assistent(err, res);
         });
     }
@@ -61,10 +61,16 @@ class UserDAO extends DBConnector {
      * @param {Object} options Object of options to be applied to the query
      * @param {Callback} assistent Callback func to be called
      */
-    update(params, options, assistent) {
+    change(params, options, assistent) {
         'use strict';
-        var query = this.caseInsensitiveParam(params);
-        this.list(query, options, function(err, res) {
+        var query = { // creates update query structure
+            _id: params._id
+        };
+        delete params._id; // delete element _id from the object
+        var set = { // creates update set structure
+            '$set': params
+        };
+        this.update(query, set, options, function(err, res) {
             assistent(err, res);
         });
     }
@@ -93,9 +99,11 @@ class UserDAO extends DBConnector {
         var query = {};
         for (let param in params) {
             if (params[param] && params[param] !== '*') {
-                (param === '_id') ?
-                query[param] = params[param]:
+                if (param === '_id') {
+                    query[param] = params[param];
+                } else {
                     query[param] = new RegExp(params[param], "i");
+                }
             }
         }
         return query;
