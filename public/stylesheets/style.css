@@ -1,12 +1,39 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
 }
 
 h1 {
-  text-align: center;
+    text-align: center;
+}
+
+hr {
+    border-top: 1px dotted darkslategray;
+}
+
+.user-item {
+    /*width: 40rem;*/
+    border: 2px dashed darkslategray;
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+    background-color: gainsboro;
+    box-shadow: 0rem 0rem 2rem #000;
+    padding-top: 2rem;
+}
+
+.user-item ul {
+    width: 35rem;
+}
+
+.user-btns-box {
+  float: right;
+  vertical-align: middle;
+  margin-top: -1rem;
+}
+.user-btns-box btn {
+  margin-left: 0.5rem;
 }

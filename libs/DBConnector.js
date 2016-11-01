@@ -1,7 +1,8 @@
 var express = require('express'),
     co = require('co'),
     format = require('util').format,
-    MongoClient = require('mongodb').MongoClient;
+    mongodb = require('mongodb'),
+    MongoClient = mongodb.MongoClient;
 
 /**
  * @file Represents a DBConnector class
@@ -40,14 +41,19 @@ class DBConnector {
     }
 
     /**
-     * Creates the mongodb connection
-     * @param {Callback} assistent Callback function to be called after connection
-     * @returns {Object} Returns a database connection instance
+     * Method implements database connection
      */
-    getConnection(assistent) {
-        'use strict';
-        MongoClient.connect(format("mongodb://%s:%s/%s?w=1", this.dbHost, this.dbPort, this.dbName),
-            assistent);
+    getConnection() {
+        // Connection URL
+        return MongoClient.connect(format("mongodb://%s:%s/%s?w=1", this.dbHost, this.dbPort, this.dbName));
+    }
+
+    /**
+     * Method implements database connection close.
+     * @param {Object} dbConn Mongodb client instance object
+     */
+    closeConnection(dbConn) {
+        dbConn.close();
     }
 
     /**
@@ -55,7 +61,7 @@ class DBConnector {
      * @param {String} dbName Database name to be setted or recovered from DBConnector.dbs properties
      * @returns {Object} Returns a database connection instance
      */
-    addOne(query, assistent) {
+    insert(query, assistent) {
         'use strict';
         var self = this;
         co(function*() {
@@ -77,25 +83,54 @@ class DBConnector {
     }
 
     /**
-     * Insert a new doc in the database
-     * @param {String} dbName Database name to be setted or recovered from DBConnector.dbs properties
-     * @returns {Object} Returns a database connection instance
+     * Updates database docs.
+     * @param {Object} query Query to be executed
+     * @param {Object} options Options to be applied to the query
+     * @param {Callback} assistent Callback function retrieve data
      */
-    addMany(query, assistent) {
+    change(query, options, assistent) {
         'use strict';
         var self = this;
         co(function*() {
             // Connection URL
             var db = yield MongoClient.connect(format("mongodb://%s:%s/%s?w=1", self.dbHost, self.dbPort, self.dbName));
-            console.log("Connected correctly to server");
+            console.log("Connected correctly t2o server");
 
-            var col = db.collection(self.collectionName);
+            /* not assynchronous _id conversion */
+            query = self.convertObjectId(query);
 
-            var docs = yield col.find(query, options)
-                .toArray(function(err, gun) {
-                    self.result = gun;
-                    assistent(err, gun);
+            var docs = yield db.collection(self.collectionName)
+                .remove(query, options, function(err, result) {
+                    assistent(err, result);
                 });
+            assistent(null, query);
+            db.close();
+        }).catch(function(err) {
+            // assistent(err);
+        });
+    }
+
+    /**
+     * Remove a doc from database
+     * @param {Object} query Query to be executed
+     * @param {Object} options Options to be applied to the query
+     * @param {Callback} assistent Callback function retrieve data
+     */
+    remove(query, options, assistent) {
+        'use strict';
+        var self = this;
+        co(function*() {
+            // Connection URL
+            var db = yield MongoClient.connect(format("mongodb://%s:%s/%s?w=1", self.dbHost, self.dbPort, self.dbName));
+
+            /* not assynchronous _id conversion */
+            query = self.convertObjectId(query);
+
+            var docs = yield db.collection(self.collectionName)
+                .remove(query, options, function(err, result) {
+                    assistent(err, result);
+                });
+            assistent(null, query);
             db.close();
         }).catch(function(err) {
             // assistent(err);
@@ -112,9 +147,8 @@ class DBConnector {
         'use strict';
         var self = this;
         co(function*() {
-            // Connection URL
-            var db = yield MongoClient.connect(format("mongodb://%s:%s/%s?w=1", self.dbHost, self.dbPort, self.dbName));
-            console.log("Connected correctly to server");
+            /* get the database connection instance */
+            var db = yield self.getConnection();
 
             var docs = yield db.collection(self.collectionName)
                 .find(query, options)
@@ -122,58 +156,21 @@ class DBConnector {
                     self.result = gun;
                     assistent(err, gun);
                 });
-            db.close();
+            /* close the dabase connection */
+            self.closeConnection(db);
         }).catch(function(err) {
             // assistent(err);
         });
     }
 
     /**
-     * Updates database docs.
-     * @param {String} dbName Database name to be setted or recovered from DBConnector.dbs properties
-     * @returns {Object} Returns a database connection instance
+     * @param {Object} query Object with the query params
+     * @returns query Returns query object with _id element converted to the mongodb ObjectId
      */
-    change() {
-        'use strict';
-        var self = this;
-        co(function*() {
-            // Connection URL
-            var db = yield MongoClient.connect(format("mongodb://%s:%s/%s?w=1", self.dbHost, self.dbPort, self.dbName));
-            console.log("Connected correctly to server");
-
-            var docs = yield db.collection(self.collectionName).find(query, options)
-                .toArray(function(err, gun) {
-                    self.result = gun;
-                    assistent(err, gun);
-                });
-            db.close();
-        }).catch(function(err) {
-            // assistent(err);
-        });
-    }
-
-    /**
-     * @param {String} dbName Database name to be setted or recovered from DBConnector.dbs properties
-     * @returns {Object} Returns a database connection instance
-     */
-    remove() {
-        'use strict';
-        var self = this;
-        co(function*() {
-            // Connection URL
-            var db = yield MongoClient.connect(format("mongodb://%s:%s/%s?w=1", self.dbHost, self.dbPort, self.dbName));
-            console.log("Connected correctly to server");
-
-            var docs = yield db.collection(self.collectionName)
-                .find(query, options)
-                .toArray(function(err, gun) {
-                    self.result = gun;
-                    assistent(err, gun);
-                });
-            db.close();
-        }).catch(function(err) {
-            // assistent(err);
-        });
+    convertObjectId(query) {
+        (!query.hasOwnProperty('_id')) ? null:
+            query._id = new mongodb.ObjectID(query._id);
+        return query;
     }
 }
 

@@ -1,14 +1,21 @@
 extends ../layout
 
 block content
+    button(class="btn btn-default glyphicon glyphicon-plus", role='group')
     //- h1(class="icon-pistol-icon") #{title}
-    h1= title
+    //- h1= title
     each user in users
         div(class="centralized row")
-            div(class="col-md-4 col-md-offset-4 user-item")
-                h4(class="icon-#{user.brand.toLowerCase()}-logo")
-                    //- a(class="btn btn-primary glyphicon glyphicon-zoom-in")
-                    //- a(class="btn btn-warning glyphicon glyphicon-cog")
+            div(class="col-md-5 col-md-offset-4 user-item")
+                //- h4(class="icon-#{user.brand.toLowerCase()}-logo")
+                div(class='btn-group user-btns-box', role='group')
+                    form(action="http://localhost:1234/users/modify",method="POST")
+                        input(type="hidden", name='_id', value=user._id)
+                        button(class="btn btn-default glyphicon glyphicon-pencil", role='group')
+                    form(action="http://localhost:1234/users/remove",method="POST")
+                        input(type="hidden", name='_id', id='_id', value=user._id)
+                        button(class="btn btn-default glyphicon glyphicon-trash", role='group')
+
                 ul(class="centralized list-unstyled")
                     li #[span(class="list-values") #{user._id}]
                         hr

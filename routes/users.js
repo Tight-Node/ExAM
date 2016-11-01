@@ -8,7 +8,7 @@ var UserDAO = require('../models/DAO/userDAO');
 userDAO = new UserDAO();
 
 router.get('/:name.first?/:name.last?/:age?/:email?/:created?', function(req, res) {
-    userDAO.read(req.params, function(err, users) {
+    userDAO.read(req.params, {}, function(err, users) {
         if (!err) {
             res.render('users/list', {
                 users: users,
@@ -21,13 +21,19 @@ router.get('/:name.first?/:name.last?/:age?/:email?/:created?', function(req, re
 });
 
 router.get('/', function(req, res) {
-    console.log('we\'re on optional / router');
-    userDAO.read({}, function(err, users) {
+    userDAO.read({}, {}, function(err, users) {
         res.render('users/list', {
             users: users,
             title: 'Gerador - Users',
         });
     });
+});
+
+router.post('/remove', function(req, res) {
+    userDAO.delete(req.body, {},
+        function(err, result) {
+            res.redirect('/users');
+        });
 });
 
 module.exports = router;

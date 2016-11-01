@@ -29,16 +29,14 @@ class UserDAO extends DBConnector {
 
     /**
      * Creates a new doc in database
+     * @param {Object} params Params to the searching query
+     * @param {Object} options Object of options to be applied to the query
+     * @param {Callback} assistent Callback func to be called
      */
-    create() {
+    create(params, options, assistent) {
         'use strict';
-        var query = {};
-        for (let param in params) {
-            if (params[param] && params[param] !== '*') {
-                query[param] = new RegExp(params[param], "i");
-            }
-        }
-        this.list(query, function(err, res) {
+        var query = this.caseInsensitiveParam(params);
+        this.list(query, options, function(err, res) {
             assistent(err, res);
         });
     }
@@ -46,51 +44,61 @@ class UserDAO extends DBConnector {
     /**
      * Implements searching/listing of docs in mongodb database
      * @param {Object} params Params to the searching query
+     * @param {Object} options Object of options to be applied to the query
      * @param {Callback} assistent Callback func to be called
      */
-    read(params, assistent) {
+    read(params, options, assistent) {
         'use strict';
-        var query = {};
-        for (let param in params) {
-            if (params[param] && params[param] !== '*') {
-                query[param] = new RegExp(params[param], "i");
-            }
-        }
-        this.list(query, {}, function(err, res) {
+        var query = this.caseInsensitiveParam(params);
+        this.list(query, options, function(err, res) {
             assistent(err, res);
         });
     }
 
     /**
      * Update docs in database
+     * @param {Object} params Params to the searching query
+     * @param {Object} options Object of options to be applied to the query
+     * @param {Callback} assistent Callback func to be called
      */
-    update() {
+    update(params, options, assistent) {
         'use strict';
-        var query = {};
-        for (let param in params) {
-            if (params[param] && params[param] !== '*') {
-                query[param] = new RegExp(params[param], "i");
-            }
-        }
-        this.list(query, function(err, res) {
+        var query = this.caseInsensitiveParam(params);
+        this.list(query, options, function(err, res) {
             assistent(err, res);
         });
     }
 
     /**
-     * Delete docs in database
+     * Implements searching/listing of docs in mongodb database
+     * @param {Object} params Params to the searching query
+     * @param {Object} options Object of options to be applied to the query
+     * @param {Callback} assistent Callback func to be called
      */
-    delete() {
+    delete(params, options, assistent) {
         'use strict';
+        var query = this.caseInsensitiveParam(params);
+        this.remove(query, options, function(err, res) {
+            assistent(err, res);
+        });
+    }
+
+    /**
+     * Method applies case-insensitive to the param's object values. It will not
+     * to be applied to the _id element.
+     * @param {Object} params Object to be scaped
+     * @returns {Object} query Scaped object
+     */
+    caseInsensitiveParam(params) {
         var query = {};
         for (let param in params) {
             if (params[param] && params[param] !== '*') {
-                query[param] = new RegExp(params[param], "i");
+                (param === '_id') ?
+                query[param] = params[param]:
+                    query[param] = new RegExp(params[param], "i");
             }
         }
-        this.list(query, function(err, res) {
-            assistent(err, res);
-        });
+        return query;
     }
 }
 
