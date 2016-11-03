@@ -5,15 +5,12 @@ block content
     //- h1(class="icon-pistol-icon") #{title}
     //- h1= title
     each user in users
+        div(id="dialog-form")
         div(class="centralized row")
             div(class="col-md-5 col-md-offset-4 user-item")
                 //- h4(class="icon-#{user.brand.toLowerCase()}-logo")
                 div(class='btn-group user-btns-box', role='group')
-                    form(action="http://localhost:1234/users/modify",method="POST")
-                        input(type="hidden", name='_id', value=user._id)
-                        input(type="hidden", name='name[first]', value="Changed")
-                        input(type="hidden", name='name[last]', value="by M0n573r")
-                        button(class="btn btn-default glyphicon glyphicon-pencil", role='group')
+                    a(class="btn btn-default glyphicon glyphicon-pencil", id="edit-user",role='group', href="http://localhost:1234/users/modify-form/"+user._id)
                     form(action="http://localhost:1234/users/remove",method="POST")
                         input(type="hidden", name='_id', value=user._id)
                         button(class="btn btn-default glyphicon glyphicon-trash", role='group')
@@ -35,3 +32,5 @@ block content
                             each login in user.logins
                                 li
                                     span(class="list-values") #{login.at} #{login.minutes}
+
+    script(type="text/javascript", src="/javascripts/users/forms.js")

@@ -39,3 +39,7 @@ hr {
 .user-btns-box btn {
     margin-left: 0.5rem;
 }
+
+div[id^="dialog-"] {
+    /*display: none;*/
+}
