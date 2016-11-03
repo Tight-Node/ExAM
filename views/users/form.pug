@@ -1,34 +1,34 @@
 extends ../layout-form-users
 
 block content
-    form(action="http://localhost:1234/users/modify",method="POST")
+    form(action="http://localhost:1234/users/modify-apply",method="POST")
         input(type="hidden", name='_id', value=user._id)
         div(class="form-group")
             input(type="text",class="form-control",id="_id",value=user._id, readonly)
         hr
         div(class="form-group")
             label(for="age") First name:
-            input(type="text",class="form-control",id="name.first",placeholder="Enter the first name", value=user.name.first)
+            input(type="text",class="form-control",id="name.first",name="name.first",placeholder="Enter the first name", value=user.name.first)
         div(class="form-group")
             label(for="age") Last name:
-            input(type="text",class="form-control",id="name.last",placeholder="Enter the last name", value=user.name.last)
+            input(type="text",class="form-control",id="name.last",name="name.last",placeholder="Enter the last name", value=user.name.last)
         div(class="form-group")
             label(for="created") Created:
-            input(type="text",class="form-control",id="created",value=user.created, readonly)
+            input(type="text",class="form-control",id="created",name="created",value=user.created, readonly)
         div(class="form-group")
             label(for="email") Email address:
-            input(type="email",class="form-control",id="email",placeholder="Enter email", value=user.email)
+            input(type="email",class="form-control",id="email",name="email",placeholder="Enter email", value=user.email)
         div(class="form-group")
             label(for="age") Age:
-            input(type="text",class="form-control",id="age",placeholder="Enter age", value=user.age)
+            input(type="text",class="form-control",id="age",name="age",placeholder="Enter age", value=user.age)
         div(class="form-group")
             label(for="skills") Skills:
-            select(multiple class="form-control" id="skills")
+            select(multiple,class="form-control",id="skills",name="skills")
                 each skill in user.skills
                     option #{skill}
         div(class="form-group")
             label(for="logins") Logins:
-            select(multiple class="form-control" id="logins" readonly)
+            select(multiple,class="form-control",id="logins",name="logins",readonly)
                 each login in user.logins
                     option #{login.at} #{login.minutes}
         button(type="submit",class="btn btn-primary") Go!

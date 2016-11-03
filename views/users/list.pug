@@ -10,7 +10,7 @@ block content
             div(class="col-md-5 col-md-offset-4 user-item")
                 //- h4(class="icon-#{user.brand.toLowerCase()}-logo")
                 div(class='btn-group user-btns-box', role='group')
-                    a(class="btn btn-default glyphicon glyphicon-pencil", id="edit-user",role='group', href="http://localhost:1234/users/modify-form/"+user._id)
+                    a(class="btn btn-default glyphicon glyphicon-pencil",role='group', href="http://localhost:1234/users/modify-form/"+user._id)
                     form(action="http://localhost:1234/users/remove",method="POST")
                         input(type="hidden", name='_id', value=user._id)
                         button(class="btn btn-default glyphicon glyphicon-trash", role='group')

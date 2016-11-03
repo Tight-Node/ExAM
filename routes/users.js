@@ -48,10 +48,11 @@ router.get('/modify-form/:_id', function(req, res) {
     });
 });
 
-router.post('/modify', function(req, res) {
+router.post('/modify-apply', function(req, res) {
     userDAO.change(req.body, {},
         function(err, result) {
             res.redirect('/users/list');
+            // res.send(req.body);
         });
 });
 
