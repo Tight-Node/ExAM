@@ -23,6 +23,7 @@ hr {
     background-color: gainsboro;
     box-shadow: 0rem 0rem 2rem #000;
     padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 .user-item ul {
@@ -30,10 +31,11 @@ hr {
 }
 
 .user-btns-box {
-  float: right;
-  vertical-align: middle;
-  margin-top: -1rem;
+    float: right;
+    vertical-align: middle;
+    margin-top: -1rem;
 }
+
 .user-btns-box btn {
-  margin-left: 0.5rem;
+    margin-left: 0.5rem;
 }

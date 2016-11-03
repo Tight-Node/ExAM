@@ -16,7 +16,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'))
     .set('view engine', 'pug')
     .set('view options', {
-        layout: false
+        layout: true
     });
 
 // environment configs
@@ -39,8 +39,7 @@ app.use(bodyParser.json())
     .use(bodyParser.urlencoded({
         // extended: false
         extended: true // convert dom elements named with json to json
-    }))
-    .use(cookieParser());
+    })).use(cookieParser());
 
 // routes
 app.use('/', routes);

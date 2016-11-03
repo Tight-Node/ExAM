@@ -56,6 +56,20 @@ class UserDAO extends DBConnector {
     }
 
     /**
+     * Implements searching/listing of docs in mongodb database
+     * @param {Object} params Params to the searching query
+     * @param {Object} options Object of options to be applied to the query
+     * @param {Callback} assistent Callback func to be called
+     */
+    readOne(params, options, assistent) {
+        'use strict';
+        var query = this.caseInsensitiveParam(params);
+        this.listOne(query, options, function(err, res) {
+            assistent(err, res);
+        });
+    }
+
+    /**
      * Update docs in database
      * @param {Object} params Params to the searching query
      * @param {Object} options Object of options to be applied to the query

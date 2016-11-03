@@ -74,7 +74,6 @@ class DBConnector {
 
             var docs = yield col.find(query, options)
                 .toArray(function(err, gun) {
-                    self.result = gun;
                     assistent(err, gun);
                 });
             db.close();
@@ -125,7 +124,7 @@ class DBConnector {
         'use strict';
         var self = this;
         co(function*() {
-            /* get the database connection instance */
+            /* get the database connection instance assynchronously */
             var db = yield self.getConnection();
 
             /* not assynchronous _id conversion */
@@ -157,7 +156,6 @@ class DBConnector {
             var docs = yield db.collection(self.collectionName)
                 .find(query, options)
                 .toArray(function(err, gun) {
-                    self.result = gun;
                     assistent(err, gun);
                 });
             /* close the dabase connection */
@@ -168,6 +166,36 @@ class DBConnector {
     }
 
     /**
+     * Find one doc in database
+     * @param {Object} query Query to be executed
+     * @param {Object} options Options to be applied to the query
+     * @param {Callback} assistent Callback function retrieve data
+     */
+    listOne(query, options, assistent) {
+        'use strict';
+        var self = this;
+        co(function*() {
+            /* get the database connection instance */
+            var db = yield self.getConnection();
+
+            /* not assynchronous _id conversion */
+            query = self.convertObjectId(query);
+
+            var docs = yield db.collection(self.collectionName)
+                .find(query, options)
+                .toArray(function(err, gun) {
+                    assistent(err, gun[0]);
+                });
+
+            /* close the dabase connection */
+            self.closeConnection(db);
+        }).catch(function(err) {
+            // assistent(err);
+        });
+    }
+
+    /**
+     * Method converts the _id to the correct type that is MongoDB.ObjectId();
      * @param {Object} query Object with the query params
      * @returns query Returns query object with _id element converted to the mongodb ObjectId
      */

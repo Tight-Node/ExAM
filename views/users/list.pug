@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-    button(class="btn btn-default glyphicon glyphicon-plus", role='group')
+    button(class="btn btn-default glyphicon glyphicon-plus", id="create-user", role='group')
     //- h1(class="icon-pistol-icon") #{title}
     //- h1= title
     each user in users
@@ -35,3 +35,5 @@ block content
                             each login in user.logins
                                 li
                                     span(class="list-values") #{login.at} #{login.minutes}
+
+    script(type="text/javascript", src="javascripts/users/forms.js")

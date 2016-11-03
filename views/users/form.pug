@@ -1,37 +1,38 @@
-extends ../layout
+//- extends ../layout
 
 block content
-    button(class="btn btn-default glyphicon glyphicon-plus", role='group')
-    //- h1(class="icon-pistol-icon") #{title}
-    //- h1= title
-    each user in users
+    form(action="http://localhost:1234/users/modify",method="POST")
+        input(type="hidden", name='_id', value=user._id)
+
         div(class="centralized row")
             div(class="col-md-5 col-md-offset-4 user-item")
-                //- h4(class="icon-#{user.brand.toLowerCase()}-logo")
-                div(class='btn-group user-btns-box', role='group')
-                    form(action="http://localhost:1234/users/modify",method="POST")
-                        input(type="hidden", name='_id', value=user._id)
-                        input(type="hidden", name='name[first]', value="Changed")
-                        input(type="hidden", name='name[last]', value="by M0n573r")
-                        button(class="btn btn-default glyphicon glyphicon-pencil", role='group')
-                    form(action="http://localhost:1234/users/remove",method="POST")
-                        input(type="hidden", name='_id', value=user._id)
-                        button(class="btn btn-default glyphicon glyphicon-trash", role='group')
-
-                ul(class="centralized list-unstyled")
-                    li #[span(class="list-values") #{user._id}]
-                        hr
-                    li Created: #[span(class="list-values") #{user.created}]
-                    li Name: #[span(class="list-values") #{user.name.first} #{user.name.last}]
-                    li E-mail: #[span(class="list-values") #{user.email}]
-                    li Age: #[span(class="list-values") #{user.age}]
-                    li Skills:
-                        ul
-                            each skill in user.skills
-                                li
-                                    span(class="list-values") #{skill}
-                    li Logins:
-                        ul
-                            each login in user.logins
-                                li
-                                    span(class="list-values") #{login.at} #{login.minutes}
+                div(class="form-group")
+                    input(type="text",class="form-control",id="_id",value=user._id, readonly)
+                hr
+                div(class="form-group")
+                    label(for="age") First name:
+                    input(type="text",class="form-control",id="name.first",placeholder="Enter the first name", value=user.name.first)
+                div(class="form-group")
+                    label(for="age") Last name:
+                    input(type="text",class="form-control",id="name.last",placeholder="Enter the last name", value=user.name.last)
+                div(class="form-group")
+                    label(for="created") Created:
+                    input(type="text",class="form-control",id="created",value=user.created, readonly)
+                div(class="form-group")
+                    label(for="email") Email address:
+                    input(type="email",class="form-control",id="email",placeholder="Enter email", value=user.email)
+                div(class="form-group")
+                    label(for="age") Age:
+                    input(type="text",class="form-control",id="age",placeholder="Enter age", value=user.age)
+                div(class="form-group")
+                    label(for="skills") Skills
+                    select(multiple class="form-control" id="skills")
+                        each skill in user.skills
+                            option #{skill}
+                div(class="form-group")
+                    label(for="logins") Logins
+                    select(multiple class="form-control" id="logins")
+                        each login in user.logins
+                            option #{login.at} #{login.minutes}
+                button(type="submit",class="btn btn-primary") Submit
+                button(type="reset",class="btn btn-default") Reset

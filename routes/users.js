@@ -36,6 +36,18 @@ router.post('/remove', function(req, res) {
         });
 });
 
+router.get('/modify-form/:_id', function(req, res) {
+    userDAO.readOne(req.params, {}, function(err, user) {
+        if (!err) {
+            res.render('users/form', {
+                user: user,
+            });
+        } else {
+            res.send(err);
+        }
+    });
+});
+
 router.post('/modify', function(req, res) {
     userDAO.change(req.body, {},
         function(err, result) {
