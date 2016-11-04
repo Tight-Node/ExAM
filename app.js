@@ -8,7 +8,7 @@ var express = require('express'),
 
 // route files
 var routes = require('./routes/router'),
-    users = require('./routes/users');
+    userRoute = require('./routes/user-route');
 
 var app = express();
 
@@ -43,7 +43,8 @@ app.use(bodyParser.json())
 
 // routes
 app.use('/', routes);
-app.use('/users', users);
+app.use('/user', userRoute);
+app.use('/users', userRoute);
 app.get('*', function(req, res) {
     res.render('layout');
 });

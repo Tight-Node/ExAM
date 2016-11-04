@@ -2,33 +2,21 @@ var express = require('express'),
     router = express.Router({
         caseSensitive: false,
         strict: false
-    });
+    }),
+    UserDAO = require('../models/DAO/user-dao'),
+    userDAO = new UserDAO();
 
-var UserDAO = require('../models/DAO/userDAO');
-userDAO = new UserDAO();
-
-router.get('/list/:name.first?', function(req, res) {
-    var userProt = require('../models/user');
+router.get("/list/:_id?/:namefirst?/:namelast?/:email?/:age?", function(req, res) {
+    var userProt = require('../models/user-model');
     var user = new userProt();
+    // load the user object
+    user.setNameFirst(req.params.namefirst || /.*/);
+    user.setNameLast(req.params.namelast || /.*/);
+    user.setEmail(req.params.email || /.*/);
+    user.setAge(req.params.age || /.*/);
+    // options to be applied
     const options = {};
-    console.log(req.params);
-    userDAO.read(req.params, options, function(err, users) {
-        if (!err) {
-            res.render('users/list', {
-                users: users,
-                title: 'Gerador',
-            });
-        } else {
-            res.send(err);
-        }
-    });
-});
-
-router.get('/list/:name.first?/:name.last?/:age?/:email?/:created?', function(req, res) {
-    var userProt = require('../models/user');
-    var user = new userProt();
-    const options = {};
-    userDAO.read(req.params, options, function(err, users) {
+    userDAO.read(user, options, function(err, users) {
         if (!err) {
             res.render('users/list', {
                 users: users,

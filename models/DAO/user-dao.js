@@ -47,9 +47,13 @@ class UserDAO extends DBConnector {
      * @param {Object} options Object of options to be applied to the query
      * @param {Callback} assistent Callback func to be called
      */
-    read(params, options, assistent) {
+    read(user, options, assistent) {
         'use strict';
-        var query = this.caseInsensitiveParam(params);
+        // var query = this.caseInsensitiveParam(params);
+        var query = this.checkEmptyParams(user);
+        // var query = user;
+        console.log('From user dao');
+        console.log(query);
         this.list(query, options, function(err, res) {
             assistent(err, res);
         });
@@ -104,9 +108,30 @@ class UserDAO extends DBConnector {
     }
 
     /**
+     * @param {Object} params Object to be scaped
+     * @returns {Object} query Scaped object
+     */
+    checkEmptyParams(params) {
+        var query = {};
+        for (let param in params) {
+            if (params[param] && params[param] !== '*') {
+                query[param] = params[param];
+            }
+            // else {
+            //     if (param === '_id') {
+            //         continue;
+            //     } else {
+            //         query[param] = /.*/; // regex to match all
+            //     }
+            // }
+        }
+        return query;
+    }
+
+    /**
      * Method applies case-insensitive to the param's object values. It will not
      * to be applied to the _id element.
-     * @param {Object} params Object to be scaped
+     * @param {Object} params Object to be case-insensitive scaped
      * @returns {Object} query Scaped object
      */
     caseInsensitiveParam(params) {
@@ -114,7 +139,8 @@ class UserDAO extends DBConnector {
         for (let param in params) {
             if (params[param] && params[param] !== '*') {
                 if (param === '_id') {
-                    query[param] = params[param];
+                    // query[param] = params[param];
+                    continue;
                 } else {
                     query[param] = new RegExp(params[param], "i");
                 }
