@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/router'),
-    armory = require('./routes/armory');
+    users = require('./routes/user-router');
 
 var app = express();
 
@@ -40,7 +40,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/armory', armory);
+app.use('/users', users);
 app.get('*', function(req, res) {
     res.render('layout');
 });
