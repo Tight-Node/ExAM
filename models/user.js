@@ -18,72 +18,53 @@ class User {
      * @param {String} created Sets the created property value
      * @param {String[]} logins Sets the logins property value
      */
-    constructor(_id, fistName, lastName, email, age, skills, created, logins) {
+    constructor(properties) {
         'use strict';
-        super();
 
         /**
          * Property stores the object _id
          * @prop {String} _id The default values for parties.
          */
-        this._id = _id;
+        this._id = (properties && properties.hasOwnProperty("_id")) ? properties._id : null;
 
         /**
          * Property stores the object name
          * @prop {string} name The default values for parties.
          */
         this.name = {
-            'first': null,
-            'last': null
+            'first': (properties && properties.hasOwnProperty("name")) ? properties.name.first : null,
+            'last': (properties && properties.hasOwnProperty("name")) ? properties.name.last : null
         };
-
-        /**
-         * Property stores the object name.first
-         * @prop {string} name.first The default values for parties.
-         */
-        this.name.first = firstName;
-
-        /**
-         * Property stores the object name.last
-         * @prop {string} name.last The default values for parties.
-         */
-        this.name.last = lastName;
-
-        /**
-         * Property stores the object nameLast
-         * @prop {String} nameLast The default values for nameLast.
-         */
-        this.nameLast = nameLast;
 
         /**
          * Property stores the object email
          * @prop {String} email The default values for parties.
          */
-        this.email = email;
+        this.email = (properties && properties.hasOwnProperty("email")) ? properties.email : null;
 
         /**
          * Property stores the object age
          * @prop {String} age The default values for aget.
          */
-        this.age = age;
+        this.age = (properties && properties.hasOwnProperty("age")) ? properties.age : null;;
 
         /**
          * Property stores the object skills
          * @prop {String[]} skills The default values for skillst.
          */
-        this.skills = skills;
+        this.skills = (properties && properties.hasOwnProperty("skills")) ? properties.skills : null;
 
         /**
          * Property stores the object created
          * @prop {String[]} created The default values for createdt.
          */
-        this.created = created;
+        this.created = (properties && properties.hasOwnProperty("created")) ? properties.created : null;
 
         /**
          * Property stores the object logins
          * @prop {String[]} logins The default values for loginst.
          */
-        this.logins = logins;
+        this.logins = (properties && properties.hasOwnProperty("logins")) ? properties.logins : null;
     }
 
     /**
@@ -108,7 +89,7 @@ class User {
      * Returns the object name.first property
      * @returns {String} name.first Returns the id from the object
      */
-    getFirstName() {
+    getNameFirst() {
         'use strict';
         return this.name.first;
     }
@@ -117,7 +98,7 @@ class User {
      * Sets the object name.first property value
      * @param {String} value Value to set name.first property
      */
-    setFirstName(value) {
+    setNameFirst(value) {
         'use strict';
         this.name.first = value;
     }
@@ -126,7 +107,7 @@ class User {
      * Returns the object name.last property
      * @returns {String} name.last Returns the id from the object
      */
-    getLastName() {
+    getNameLast() {
         'use strict';
         return this.name.last;
     }
@@ -135,7 +116,7 @@ class User {
      * Sets the object name.last property value
      * @param {String} value Value to set nameLast property
      */
-    setLastName(value) {
+    setNameLast(value) {
         'use strict';
         this.name.last = value;
     }

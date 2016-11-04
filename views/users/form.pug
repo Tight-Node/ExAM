@@ -2,13 +2,12 @@ extends ../layout-form-users
 
 block content
     form(action="http://localhost:1234/users/modify-apply",method="POST")
-        input(type="hidden", name='_id', value=user._id)
         div(class="form-group")
-            input(type="text",class="form-control",id="_id",value=user._id, readonly)
+            input(type="text",class="form-control",id="_id",name='_id',value=((typeof user._id !== 'undefined')? user._id : null), readonly)
         hr
         div(class="form-group")
             label(for="age") First name:
-            input(type="text",class="form-control",id="name.first",name="name.first",placeholder="Enter the first name", value=user.name.first)
+            input(type="text",class="form-control",id="name.first",name="name.first",placeholder="Enter the first name", value=((typeof user.name.first !== 'undefined')? user.name.first : null))
         div(class="form-group")
             label(for="age") Last name:
             input(type="text",class="form-control",id="name.last",name="name.last",placeholder="Enter the last name", value=user.name.last)
@@ -21,15 +20,15 @@ block content
         div(class="form-group")
             label(for="age") Age:
             input(type="text",class="form-control",id="age",name="age",placeholder="Enter age", value=user.age)
-        div(class="form-group")
-            label(for="skills") Skills:
-            select(multiple,class="form-control",id="skills",name="skills")
-                each skill in user.skills
-                    option #{skill}
-        div(class="form-group")
-            label(for="logins") Logins:
-            select(multiple,class="form-control",id="logins",name="logins",readonly)
-                each login in user.logins
-                    option #{login.at} #{login.minutes}
+        //- div(class="form-group")
+        //-     label(for="skills") Skills:
+        //-     select(multiple,class="form-control",id="skills",name="skills")
+        //-         each skill in user.skills
+        //-             option #{skill}
+        //- div(class="form-group")
+        //-     label(for="logins") Logins:
+        //-     select(multiple,class="form-control",id="logins",name="logins",readonly)
+        //-         each login in user.logins
+        //-             option #{login.at} #{login.minutes}
         button(type="submit",class="btn btn-primary") Go!
         button(type="reset",class="btn btn-default") Clean

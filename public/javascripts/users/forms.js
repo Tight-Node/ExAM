@@ -17,7 +17,7 @@ $(document).ready(function() {
     });
 
     /**
-     *
+     * Implements ajax request to get the user form content
      */
     function getUserFormContent() {
         $.ajax({

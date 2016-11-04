@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-    button(class="btn btn-default glyphicon glyphicon-plus", id="create-user", role='group')
+    a(class="btn btn-default glyphicon glyphicon-pencil",role='group', href="http://localhost:1234/users/create/")
     //- h1(class="icon-pistol-icon") #{title}
     //- h1= title
     each user in users

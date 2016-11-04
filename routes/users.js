@@ -7,8 +7,12 @@ var express = require('express'),
 var UserDAO = require('../models/DAO/userDAO');
 userDAO = new UserDAO();
 
-router.get('/list/:name.first?/:name.last?/:age?/:email?/:created?', function(req, res) {
-    userDAO.read(req.params, {}, function(err, users) {
+router.get('/list/:name.first?', function(req, res) {
+    var userProt = require('../models/user');
+    var user = new userProt();
+    const options = {};
+    console.log(req.params);
+    userDAO.read(req.params, options, function(err, users) {
         if (!err) {
             res.render('users/list', {
                 users: users,
@@ -20,12 +24,19 @@ router.get('/list/:name.first?/:name.last?/:age?/:email?/:created?', function(re
     });
 });
 
-router.get('/list', function(req, res) {
-    userDAO.read({}, {}, function(err, users) {
-        res.render('users/list', {
-            users: users,
-            title: 'Gerador',
-        });
+router.get('/list/:name.first?/:name.last?/:age?/:email?/:created?', function(req, res) {
+    var userProt = require('../models/user');
+    var user = new userProt();
+    const options = {};
+    userDAO.read(req.params, options, function(err, users) {
+        if (!err) {
+            res.render('users/list', {
+                users: users,
+                title: 'Gerador',
+            });
+        } else {
+            res.send(err);
+        }
     });
 });
 
@@ -47,6 +58,11 @@ router.get('/modify-form/:_id', function(req, res) {
         }
     });
 });
+
+router.get('/create',
+    function(req, res) {
+        res.render('users/form');
+    });
 
 router.post('/modify-apply', function(req, res) {
     userDAO.change(req.body, {},
