@@ -13,7 +13,7 @@ router.get('/:category?/:brand?/:caliber?/:serie?', function(req, res) {
     gunDAO.read(req.params, function(err, guns) {
         res.render('armory/list', {
             guns: guns,
-            title: 'Guns',
+            title: 'E-mails generator',
         });
     })
 });
@@ -23,7 +23,7 @@ router.get('/', function(req, res) {
     gunDAO.read({}, function(err, guns) {
         res.render('armory/list', {
             guns: guns,
-            title: 'Guns',
+            title: 'E-mails generator.',
         });
     })
 });
