@@ -6,7 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/router'),
-    users = require('./routes/user-router');
+    users = require('./routes/user-router'),
+    cars = require('./routes/car-router');
 
 var app = express();
 
@@ -41,6 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/cars', cars);
 app.get('*', function(req, res) {
     res.render('layout');
 });

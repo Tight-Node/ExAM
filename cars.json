@@ -1,0 +1,15 @@
+{"brand":"VW","carmodel":"gol","category":"passeio","color":"chumbo","motor":"1.8","optionals":["Ar condicionado","Vidro elétrico","Trava elétrica"]}
+{"brand":"GM - Chevrolet","carmodel":"Kadett","category":"passeio","color":"vermelho","motor":"1.8","optionals":["Ar condicionado","Vidro elétrico","Trava elétrica"]}
+{"brand":"Ferrari","carmodel":"F355","category":"passeio","color":"laranja","motor":"1.8","optionals":["Ar condicionado","Vidro elétrico","Trava elétrica"]}
+{"brand":"Ford","carmodel":"Escort","category":"passeio","color":"chumbo","motor":"2.0","optionals":["Ar condicionado","Vidro elétrico","Trava elétrica"]}
+{"brand":"Fiat","carmodel":"Siena","category":"passeio","color":"azul metálico","motor":"1.6","optionals":["Ar condicionado","Vidro elétrico","Trava elétrica"]}
+{"brand":"VW","carmodel":"Parati","category":"utilitario","color":"Grafite","motor":"1.8","optionals":["Ar condicionado","Vidro elétrico","Trava elétrica"]}
+{"brand":"GM - Chevrolet","carmodel":"Monza","category":"utilitario","color":"Grafite","motor":"1.8","optionals":["Ar condicionado","Vidro elétrico","Trava elétrica"]}
+{"brand":"Ferrari","carmodel":"La Ferrari","category":"utilitario","color":"Grafite","motor":"1.8","optionals":["Ar condicionado","Vidro elétrico","Trava elétrica"]}
+{"brand":"Ford","carmodel":"ka","category":"utilitario","color":"Grafite","motor":"2.0","optionals":["Ar condicionado","Vidro elétrico","Trava elétrica"]}
+{"brand":"Fiat","carmodel":"Punto","category":"utilitario","color":"Grafite","motor":"1.6","optionals":["Ar condicionado","Vidro elétrico","Trava elétrica"]}
+{"brand":"VW","carmodel":"Voyage","category":"suv","color":"Preto fosco","motor":"1.8","optionals":["Ar condicionado","Vidro elétrico","Trava elétrica"]}
+{"brand":"GM - Chevrolet","carmodel":"Ipanema","category":"suv","color":"Preto fosco","motor":"1.8","optionals":["Ar condicionado","Vidro elétrico","Trava elétrica"]}
+{"brand":"Ferrari","carmodel":"F50","category":"suv","color":"Preto fosco","motor":"1.8","optionals":["Ar condicionado","Vidro elétrico","Trava elétrica"]}
+{"brand":"Ford","carmodel":"Mustang","category":"suv","color":"Preto fosco","motor":"2.0","optionals":["Ar condicionado","Vidro elétrico","Trava elétrica"]}
+{"brand":"Fiat","carmodel":"Brava","category":"suv","color":"Preto fosco","motor":"1.6","optionals":["Ar condicionado","Vidro elétrico","Trava elétrica"]}
