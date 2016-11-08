@@ -27,4 +27,13 @@ router.get('/', function(req, res) {
     })
 });
 
+router.delete('/delete/:_id', function(req, res) {
+    console.log('we\'re on /delete/:_id route');
+    userDAO.read({}, function(err, users) {
+        res.render('user/list', {
+            users: users,
+        });
+    })
+});
+
 module.exports = router;
