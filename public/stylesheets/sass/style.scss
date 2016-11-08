@@ -3,85 +3,97 @@
  * @created: 10/23/2016
  */
 $fonts: monospace, lucida, verdana;
+
 * {}
+
 body {
-  background: #cfcfcf;
-  color: #999;
-  font-family: $fonts;
-}
-h1 {
-  color: #444;
-  text-align: center;
-}
-div.centralized {
-  background-color: #222;
-  // background-image: url("../images/bg-texture.png");
-  background-image: url("../images/bg-texture.jpg");
-  background-repeat: repeat;
-  padding: 1rem;
-  // background: gainsboro;
-  // position: absolute;
-  // margin-top: -3rem;
-}
-ul.centralized {
-  padding: 1rem;
-  background-color: #1c1b1b;
-  border: 0.1rem inset black;
-  border-style: dotted;
-  border-radius: 1rem;
-}
-.user-item {
-  background: #cfcfcf;
-  border: 0.1rem ridge black;
-  border-style: outset;
-  border-radius: 1rem;
-  padding-left: 1rem;
-  padding-bottom: 1rem;
-  padding-right: 1rem;
-  -webkit-box-shadow: 0.5rem 0.5rem 0.25rem 0 rgba(0,0,0,0.75);
-  -moz-box-shadow: 0.5rem 0.5rem 0.25rem 0 rgba(0,0,0,0.75);
-  box-shadow: 0.5rem 0.5rem 0.25rem 0 rgba(0,0,0,0.75);
-  a {
-    float: right;
-    margin-left: 0.5rem;
-  }
-  h4 {
-    color: rgb(167, 0, 50);
-    font-weight: bolder;
+    background: #cfcfcf;
+    color: #999;
     font-family: $fonts;
-    margin-top: 2rem;
-    margin-bottom: 1.5rem;
-  }
-  h4[class^="icon-"]:after,
-  h4[class^="icon-"]:before {
-    // color: #777;
-    font-size: 4rem;
-    vertical-align: middle;
-    padding: 0.5rem;
-    border: 0.1rem inset #000;
-    border-radius: 0.5rem;
+}
+
+h1 {
+    color: #444;
+    text-align: center;
+}
+
+div.centralized {
+    background-color: #222;
+    // background-image: url("../images/bg-texture.png");
+    // background-image: url("../images/bg-texture.jpg");
+    background-repeat: repeat;
+    padding: 1rem;
+    // background: gainsboro;
+    // position: absolute;
+    // margin-top: -3rem;
+}
+
+ul.centralized {
+    padding: 1rem;
     background-color: #1c1b1b;
-    // float: right;
-  }
-  // .icon-taurus-logo:before {
-  //   font-size: 2rem !important;
-  //   font-family: $fonts;
-  //   content: 'Taurus';
-  // }
+    border: 0.1rem inset black;
+    border-style: dotted;
+    border-radius: 1rem;
 }
+
+.user-item {
+    background: #cfcfcf;
+    border: 0.1rem ridge black;
+    border-style: outset;
+    border-radius: 1rem;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+    padding-right: 1rem;
+    -webkit-box-shadow: 0.5rem 0.5rem 0.25rem 0 rgba(0,0,0,0.75);
+    -moz-box-shadow: 0.5rem 0.5rem 0.25rem 0 rgba(0,0,0,0.75);
+    box-shadow: 0.5rem 0.5rem 0.25rem 0 rgba(0,0,0,0.75);
+
+    a {
+        float: right;
+        margin-left: 0.5rem;
+    }
+
+    h4 {
+        color: rgb(167, 0, 50);
+        font-weight: bolder;
+        font-family: $fonts;
+        margin-top: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    h4[class^="icon-"]:after,
+    h4[class^="icon-"]:before {
+        // color: #777;
+        font-size: 4rem;
+        vertical-align: middle;
+        padding: 0.5rem;
+        border: 0.1rem inset #000;
+        border-radius: 0.5rem;
+        background-color: #1c1b1b;
+        // float: right;
+    }
+    // .icon-taurus-logo:before {
+    //   font-size: 2rem !important;
+    //   font-family: $fonts;
+    //   content: 'Taurus';
+    // }
+}
+
 .icon-pistol-icon:before {
-  content: none;
+    content: none;
 }
+
 .icon-pistol-icon:after {
-  font-size: 5rem;
-  vertical-align: middle;
-  padding-top: 1rem;
-  content: "\e906";
+    font-size: 5rem;
+    vertical-align: middle;
+    padding-top: 1rem;
+    content: "\e906";
 }
+
 a,
 a:hover,
 a:visited {
-  text-decoration: none;
+    text-decoration: none;
 }
 // @media (max-width: @screen-xs-max) {}
 // @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {}

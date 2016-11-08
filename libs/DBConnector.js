@@ -1,26 +1,29 @@
 var express = require('express'),
-  mongoose = require('mongoose');
+    mongoose = require('mongoose');
+
+// mongoose.Promise = require('bluebird');
+mongoose.Promise = Promise;
 
 function DBConnector() {
-  this.dbs = {};
+    this.dbs = {};
 }
 
 DBConnector.prototype.checkConnection = function(dbName) {
-  return (this.dbs.dbName) ? this.dbs.dbName : this.dbs.dbName = null;
+    return (this.dbs.dbName) ? this.dbs.dbName : this.dbs.dbName = null;
 }
 
 DBConnector.prototype.getConnection = function(dbName) {
-  if (!this.checkConnection(dbName)) {
-    var uristring =
-      process.env.MONGOLAB_URI ||
-      process.env.MONGOHQ_URL ||
-      'mongodb://localhost/' + dbName;
-    this.dbs.dbName = mongoose.createConnection(uristring, function(err, res) {
-      (err) ? console.log('MongoDB connection error: ' + uristring + ' - ' + err):
-        console.log('MongoDB connection succeed: ' + uristring);
-    });
-  }
-  return this.dbs.dbName;
+    if (!this.checkConnection(dbName)) {
+        var uristring =
+            process.env.MONGOLAB_URI ||
+            process.env.MONGOHQ_URL ||
+            'mongodb://localhost/' + dbName;
+        this.dbs.dbName = mongoose.createConnection(uristring, function(err, res) {
+            (err) ? console.log('MongoDB connection error: ' + uristring + ' - ' + err):
+                console.log('MongoDB connection succeed: ' + uristring);
+        });
+    }
+    return this.dbs.dbName;
 }
 
 module.exports = DBConnector;

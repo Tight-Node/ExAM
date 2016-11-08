@@ -3,17 +3,38 @@ var mongoose = require('mongoose'),
     connection = new DBConn().getConnection('alongDWay'),
     Schema = mongoose.Schema;
 
+mongoose.Promise = Promise;
+
 var userSchema = new Schema({
-    "_id": String,
-    "brand": String,
-    "category": String,
-    "color": String,
-    "motor": String,
-    "optionals": [String]
+    "name": {
+        "first": String,
+        "last": {
+            type: String,
+            trim: true
+        }
+    },
+    "email": String,
+    "age": {
+        type: Number,
+        min: 0
+    },
+    "skills": [String],
+    "created": {
+        "$date": {
+            type: Date,
+            default: Date.now
+        }
+    },
+    "logins": [{
+        "at": {
+            "$date": Date
+        },
+        "minutes": Number
+    }]
 }, {
-    collection: 'cars'
+    collection: 'users'
 });
 
-var User = connection.model('user', userSchema);
+var User = connection.model('users', userSchema);
 
 module.exports = User;

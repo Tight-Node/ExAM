@@ -1,4 +1,5 @@
 var express = require('express'),
+    util = require('util'),
     mongoose = require('mongoose'),
     router = express.Router({
         caseSensitive: false,
@@ -8,22 +9,19 @@ var express = require('express'),
 var UserDAO = require('../models/DAO/user-dao'),
     userDAO = new UserDAO();
 
-router.get('/:category?/:brand?/:motor?/:serie?', function(req, res) {
-    userDAO.read(req.params, function(err, users) {
-        res.render('user/list', {
-            users: users,
-            title: 'E-mails generator',
-        });
-    })
-});
-
 router.get('/', function(req, res) {
-    console.log('we\'re on optional / router');
-    userDAO.read({}, function(err, users) {
+    // userDAO.readAll({}, function(err, users) {
+    userDAO.reading({}, function(err, users) {
+        console.log('from user routers');
+        console.log(util.inspect(users, {
+            depth: null,
+            colors: true
+        }));
         res.render('user/list', {
             users: users,
-            title: ' --- E-mails generator --- ',
+            title: 'GENERATOR',
         });
+        // res.send(JSON.stringify(users, null, null));
     })
 });
 

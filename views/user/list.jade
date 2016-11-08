@@ -1,24 +1,26 @@
 extends ../layout
 
 block content
-    //- h1(class="icon-pistol-icon") #{title}
     h1 #{title}
     each user in users
         div(class="centralized row")
-            div(class="col-md-4 col-md-offset-4 user-item")
-                //- h4(class="icon-#{user.brand.toLowerCase()}-logo")
+            div(class="col-md-6 col-md-offset-4 user-item")
                 h4
-                    //- a(class="btn btn-primary glyphicon glyphicon-zoom-in")
-                    //- a(class="btn btn-warning glyphicon glyphicon-cog")
                 ul(class="centralized list-unstyled")
                     li #[span(class="list-values") #{user._id}]
                         hr
-                    li Brand: #[span(class="list-values") #{user.brand}]
-                    li Category: #[span(class="list-values") #{user.category}]
-                    li Color: #[span(class="list-values") #{user.color}]
-                    li Motor: #[span(class="list-values") #{user.motor}]
-                    li Optionals:
+                    li Name: #[span(class="list-values") #{user.name.first} #{user.name.last}]
+                    li E-mail: #[span(class="list-values") #{user.email}]
+                    li Age: #[span(class="list-values") #{user.age}]
+                    li Skills:
                         ul
-                            each optional in user.optionals
+                            each skill in user.skills
                                 li
-                                    span(class="list-values") #{optional}
+                                    span(class="list-values") #{skill}
+                    li Created: #[span(class="list-values") #{user.created}]
+                    li Logins:
+                        ul
+                            each login in user.logins
+                                li  
+                                    span(class="list-values") At: #{login.at}
+                                    span(class="list-values") Minutes: #{login.minutes}

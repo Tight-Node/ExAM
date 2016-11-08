@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+    //- h1(class="icon-pistol-icon") #{title}
+    h1 #{title}
+    each car in cars
+        div(class="centralized row")
+            div(class="col-md-4 col-md-offset-4 car-item")
+                //- h4(class="icon-#{car.brand.toLowerCase()}-logo")
+                h4
+                    //- a(class="btn btn-primary glyphicon glyphicon-zoom-in")
+                    //- a(class="btn btn-warning glyphicon glyphicon-cog")
+                ul(class="centralized list-unstyled")
+                    li #[span(class="list-values") #{car._id}]
+                        hr
+                    li Brand: #[span(class="list-values") #{car.brand}]
+                    li Category: #[span(class="list-values") #{car.category}]
+                    li Color: #[span(class="list-values") #{car.color}]
+                    li Motor: #[span(class="list-values") #{car.motor}]
+                    li Optionals:
+                        ul
+                            each optional in car.optionals
+                                li
+                                    span(class="list-values") #{optional}
